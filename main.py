@@ -11,6 +11,10 @@ from sqlalchemy.orm import Session
 import models, schemas
 from database import engine, get_db
 
+import exifread
+from PIL import Image
+import io
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="ForenSys Vision API")
@@ -182,6 +186,177 @@ def delete_suspect(suspect_id: int, db: Session = Depends(get_db), current_user:
     db.commit()
     retrain_model(db)
     return {"ok": True, "id": suspect_id}
+
+@app.post("/api/cyber/extract_metadata")
+async def extract_metadata(file: UploadFile = File(...)):
+    import hashlib
+    import mimetypes
+    try:
+        content = await file.read()
+        tags = exifread.process_file(io.BytesIO(content))
+        
+        # 1. File Integrity & Basic Info
+        md5_hash = hashlib.md5(content).hexdigest()
+        sha256_hash = hashlib.sha256(content).hexdigest()
+        mime_type, _ = mimetypes.guess_type(file.filename)
+        
+        file_info = {
+            "filename": file.filename,
+            "size_bytes": len(content),
+            "mime_type": mime_type or "application/octet-stream",
+            "md5": md5_hash,
+            "sha256": sha256_hash
+        }
+        
+        # 2. Hardware & Image params
+        hardware_info = {}
+        if 'Image Make' in tags: hardware_info['Make'] = str(tags['Image Make'])
+        if 'Image Model' in tags: hardware_info['Model'] = str(tags['Image Model'])
+        if 'Image Software' in tags: hardware_info['Software'] = str(tags['Image Software'])
+        if 'EXIF ExifImageWidth' in tags: hardware_info['ImageWidth'] = str(tags['EXIF ExifImageWidth'])
+        if 'EXIF ExifImageLength' in tags: hardware_info['ImageLength'] = str(tags['EXIF ExifImageLength'])
+        if 'Image XResolution' in tags: hardware_info['XResolution'] = str(tags['Image XResolution'])
+        if 'Image YResolution' in tags: hardware_info['YResolution'] = str(tags['Image YResolution'])
+        
+        # 3. Capture Params
+        capture_info = {}
+        if 'EXIF FNumber' in tags: capture_info['FNumber'] = str(tags['EXIF FNumber'])
+        if 'EXIF ExposureTime' in tags: capture_info['ExposureTime'] = str(tags['EXIF ExposureTime'])
+        if 'EXIF ISOSpeedRatings' in tags: capture_info['ISOSpeedRatings'] = str(tags['EXIF ISOSpeedRatings'])
+        if 'EXIF FocalLength' in tags: capture_info['FocalLength'] = str(tags['EXIF FocalLength'])
+        if 'EXIF Flash' in tags: capture_info['Flash'] = str(tags['EXIF Flash'])
+        if 'EXIF DateTimeOriginal' in tags: capture_info['DateTimeOriginal'] = str(tags['EXIF DateTimeOriginal'])
+        
+        # All other EXIF for raw table
+        raw_metadata = {}
+        for tag in tags.keys():
+            if tag not in ('JPEGThumbnail', 'TIFFThumbnail', 'Filename', 'EXIF MakerNote'):
+                val = str(tags[tag])
+                if len(val) < 500:
+                    raw_metadata[tag] = val
+                    
+        # 4. Strict GPS Extraction
+        gps_data = {"gps_present": False, "status": "METADATA_NOT_FOUND"}
+        if 'GPS GPSLatitude' in tags and 'GPS GPSLongitude' in tags:
+            try:
+                lat = tags['GPS GPSLatitude'].values
+                lat_ref = str(tags.get('GPS GPSLatitudeRef', 'N'))
+                lon = tags['GPS GPSLongitude'].values
+                lon_ref = str(tags.get('GPS GPSLongitudeRef', 'W'))
+                
+                def to_decimal(coords, ref):
+                    d, m, s = [float(x.num)/float(x.den) if x.den != 0 else 0 for x in coords]
+                    dec = d + (m/60.0) + (s/3600.0)
+                    if ref in ['S', 'W']:
+                        dec = -dec
+                    return dec
+                
+                dec_lat = to_decimal(lat, lat_ref)
+                dec_lon = to_decimal(lon, lon_ref)
+                
+                # Format DMS
+                def to_dms_str(coords, ref):
+                    d, m, s = [float(x.num)/float(x.den) if x.den != 0 else 0 for x in coords]
+                    return f"{int(d)}° {int(m)}' {s:.2f}\" {ref}"
+                
+                gps_data = {
+                    "gps_present": True,
+                    "status": "SUCCESS",
+                    "latitude_dd": dec_lat,
+                    "longitude_dd": dec_lon,
+                    "latitude_dms": to_dms_str(lat, lat_ref),
+                    "longitude_dms": to_dms_str(lon, lon_ref),
+                    "map_url": f"https://www.google.com/maps/search/?api=1&query={dec_lat},{dec_lon}"
+                }
+                
+                if 'GPS GPSAltitude' in tags:
+                    alt = tags['GPS GPSAltitude'].values[0]
+                    alt_val = float(alt.num) / float(alt.den) if alt.den != 0 else 0
+                    alt_ref = tags.get('GPS GPSAltitudeRef', 0)
+                    if str(alt_ref) == '1': alt_val = -alt_val
+                    gps_data['altitude_meters'] = alt_val
+                    
+                if 'GPS GPSDate' in tags and 'GPS GPSTimeStamp' in tags:
+                    gps_date = tags['GPS GPSDate'].values
+                    gps_time = tags['GPS GPSTimeStamp'].values
+                    time_str = f"{int(gps_time[0].num/gps_time[0].den):02d}:{int(gps_time[1].num/gps_time[1].den):02d}:{float(gps_time[2].num/gps_time[2].den):05.2f}"
+                    gps_data['timestamp'] = f"{gps_date} {time_str} UTC"
+                    
+                if 'GPS GPSImgDirection' in tags:
+                    gps_data['direction'] = str(tags['GPS GPSImgDirection'])
+                    
+                if 'GPS GPSDOP' in tags:
+                    gps_data['precision_dop'] = str(tags['GPS GPSDOP'])
+
+            except Exception as e:
+                gps_data = {"gps_present": False, "status": f"ERROR_PARSING: {str(e)}"}
+                
+        return {
+            "file_info": file_info,
+            "hardware": hardware_info,
+            "capture": capture_info,
+            "gps": gps_data,
+            "raw_metadata": raw_metadata
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+from pydantic import BaseModel
+class OSINTRequest(BaseModel):
+    query: str
+
+@app.post("/api/osint/analyze")
+async def analyze_osint(request: OSINTRequest):
+    import hashlib
+    # MOCK OSINT ENGINE FOR V1
+    # Simularemos la respuesta de herramientas como Sherlock o Maltego
+    query = request.query.lower().strip()
+    
+    # Nodo Central (El objetivo)
+    nodes = [{"id": 1, "label": query, "group": "target", "title": f"Búsqueda Original: {query}"}]
+    edges = []
+    
+    # Generar algunos nodos relacionados basados en un hash simple del query para que sea determinista
+    h = int(hashlib.md5(query.encode()).hexdigest()[:8], 16)
+    
+    # Simular un perfil de correo
+    if "@" not in query:
+        email = f"{query}{h%100}@gmail.com"
+        nodes.append({"id": 2, "label": email, "group": "email", "title": "Correo asociado en brecha de datos"})
+        edges.append({"from": 1, "to": 2, "label": "vinculado a"})
+    else:
+        username = query.split("@")[0]
+        nodes.append({"id": 2, "label": username, "group": "alias", "title": "Alias extraído del correo"})
+        edges.append({"from": 1, "to": 2, "label": "alias probable"})
+        
+    # Simular IPs y ubicaciones
+    ip1 = f"192.168.{h%255}.{(h//255)%255}"
+    nodes.append({"id": 3, "label": ip1, "group": "ip", "title": "Última IP conocida (Foro Hack)"})
+    edges.append({"from": 1, "to": 3, "label": "conexión directa"})
+    
+    # Simular Redes Sociales (Estilo Sherlock)
+    nodes.append({"id": 4, "label": "Twitter", "group": "social", "title": "Cuenta activa detectada"})
+    edges.append({"from": 1, "to": 4, "label": "perfil encontrado"})
+    
+    nodes.append({"id": 5, "label": "Github", "group": "social", "title": "Cuenta inactiva detectada"})
+    edges.append({"from": 1, "to": 5, "label": "perfil encontrado"})
+    
+    # Conexión secundaria (Grafo más complejo)
+    nodes.append({"id": 6, "label": f"{query}_admin", "group": "alias", "title": "Alias alternativo en la misma IP"})
+    edges.append({"from": 3, "to": 6, "label": "comparte IP"})
+    
+    # Simular un dispositivo
+    nodes.append({"id": 7, "label": "MacBook Pro", "group": "device", "title": "User-Agent frecuente"})
+    edges.append({"from": 3, "to": 7, "label": "fingerprint"})
+
+    return {
+        "status": "success",
+        "query": query,
+        "graph": {
+            "nodes": nodes,
+            "edges": edges
+        }
+    }
 
 from fastapi.responses import FileResponse
 import shutil

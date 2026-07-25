@@ -100,6 +100,14 @@
           <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </a>
 
+        <a onclick="navigateTo('suite')" id="nav-suite">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+          </svg>
+          <span>Suite ForenSys</span>
+          <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </a>
+
         <a onclick="navigateTo('about')" id="nav-about">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
@@ -162,9 +170,9 @@
               <button class="btn btn-secondary btn-full" onclick="alert('Análisis de Informe en desarrollo...')">Analizar Informe</button>
             </div>
             <div class="panel" style="grid-column: 1 / -1;">
-              <h2 style="color:var(--accent-bright);margin-bottom:1rem;">Herramientas OSINT</h2>
-              <p class="text-muted mb-1">Módulo beta para recolección de inteligencia de fuentes abiertas (Open Source Intelligence).</p>
-              <button class="btn btn-secondary" onclick="alert('Herramientas OSINT en desarrollo...')">Abrir Panel OSINT</button>
+              <h2 style="color:var(--accent-bright);margin-bottom:1rem;">Suite ForenSys</h2>
+              <p class="text-muted mb-1">Módulo avanzado de recolección de inteligencia, análisis forense digital y simulación balística.</p>
+              <button class="btn btn-secondary" onclick="navigateTo('suite')">Abrir Panel ForenSys</button>
             </div>
           </div>
         </div>
@@ -240,6 +248,175 @@
       </div>
 
 
+
+      <!-- SUITE FORENSYS -->
+      <div id="view-suite" class="view">
+        <div class="view-content" style="max-width:1200px;">
+          <div class="page-header">
+            <div>
+              <h1>Suite ForenSys</h1>
+              <p>Herramientas avanzadas de recolección de inteligencia, análisis forense digital y simulación.</p>
+            </div>
+          </div>
+          <div class="dash-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem;">
+            
+            <div class="panel" style="padding:1rem;">
+              <img src="images/forensys_mobile.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Mobile / Cloud">
+              <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Mobile / Cloud</h3>
+              <p class="text-muted" style="font-size:0.9rem;">Identificación Biométrica Instantánea en Campo.</p>
+            </div>
+
+            <div class="panel" style="padding:1rem; cursor:pointer;" onclick="navigateTo('cyber')">
+              <img src="images/forensys_cyber.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Cyber & MetaInspect">
+              <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Cyber & MetaInspect</h3>
+              <p class="text-muted" style="font-size:0.9rem;">Análisis de Evidencia Digital e Inteligencia Artificial.</p>
+              <button class="btn btn-primary btn-full mt-2" onclick="navigateTo('cyber'); event.stopPropagation();">Abrir Módulo</button>
+            </div>
+
+            <div class="panel" style="padding:1rem;">
+              <img src="images/forensys_ballistics.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Ballistics 3D">
+              <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Ballistics 3D</h3>
+              <p class="text-muted" style="font-size:0.9rem;">Simulación y Trayectoria de Proyectiles.</p>
+            </div>
+
+            <div class="panel" style="padding:1rem; cursor:pointer;" onclick="navigateTo('osint')">
+              <img src="images/forensys_osint.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys OSINT & NetTracker">
+              <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys OSINT & NetTracker</h3>
+              <p class="text-muted" style="font-size:0.9rem;">Ciberinteligencia e Investigación Digital.</p>
+              <button class="btn btn-primary btn-full mt-2" onclick="navigateTo('osint'); event.stopPropagation();">Abrir Módulo</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- CYBER & METAINSPECT -->
+      <div id="view-cyber" class="view">
+        <div class="view-content" style="max-width:900px;">
+          <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h1 style="color:#a855f7;">ForenSys Cyber & MetaInspect</h1>
+              <p>Extracción de metadatos EXIF, GPS e información profunda de archivos.</p>
+            </div>
+            <button class="btn btn-secondary" onclick="navigateTo('suite')">Volver a Suite</button>
+          </div>
+
+          <div class="dash-grid">
+            <div class="panel" style="grid-column: 1 / -1;">
+              <h2 style="color:var(--text);margin-bottom:1rem;">Análisis de Archivo</h2>
+              <p class="text-muted mb-2">Sube una fotografía (JPEG, PNG, HEIC) o un documento para extraer sus datos ocultos.</p>
+              
+              <div style="border: 2px dashed var(--border); border-radius: 12px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: 0.3s;" id="cyber-dropzone" onclick="document.getElementById('cyber-file').click()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px; margin-bottom:1rem; color:var(--text-muted);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <p style="color:var(--text); font-weight:500; font-size:1.1rem;">Haz clic o arrastra un archivo aquí</p>
+                <p class="text-muted" style="font-size:0.9rem;">Formatos soportados: JPG, PNG, TIFF, HEIC, MP4</p>
+                <input type="file" id="cyber-file" style="display:none;" onchange="analyzeCyberFile(event)">
+              </div>
+
+              <div id="cyber-loading" class="hidden" style="text-align:center; padding:2rem 0;">
+                <p style="color:var(--accent-bright); font-weight:600; font-size:1.2rem;">Analizando huellas digitales del archivo...</p>
+              </div>
+            </div>
+
+            <div class="panel" id="cyber-results-panel" style="grid-column: 1 / -1; display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:0.5rem; margin-bottom:1rem;">
+                <h3 style="color:#10b981; margin:0; font-size:1.2rem;">Resultados de MetaInspect</h3>
+                <div>
+                  <button class="btn btn-secondary" onclick="resetCyber()">Analizar Otra Foto</button>
+                  <button class="btn btn-primary" onclick="exportCyber()">Exportar Informe</button>
+                </div>
+              </div>
+              
+              <div class="dash-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:1rem;">
+                <div>
+                  <h4 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Integridad y Archivo</h4>
+                  <ul style="list-style:none; padding:0; font-size:0.9rem;" id="cyber-basic-info"></ul>
+                  
+                  <h4 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-top:1rem; margin-bottom:0.5rem;">Hardware y Captura</h4>
+                  <ul style="list-style:none; padding:0; font-size:0.9rem;" id="cyber-hardware-info"></ul>
+                </div>
+                <div>
+                  <h4 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Geolocalización Forense</h4>
+                  <div id="cyber-gps-info"></div>
+                </div>
+              </div>
+
+              <h4 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Datos EXIF Completos</h4>
+              <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:8px; padding:1rem; max-height:400px; overflow-y:auto;">
+                <table style="width:100%; text-align:left; border-collapse:collapse; font-size:0.9rem;" id="cyber-exif-table">
+                  <thead>
+                    <tr style="border-bottom:1px solid var(--border); color:var(--accent-bright);">
+                      <th style="padding:0.5rem 0;">Etiqueta EXIF</th>
+                      <th style="padding:0.5rem 0;">Valor Detectado</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- OSINT & NETTRACKER -->
+      <div id="view-osint" class="view">
+        <div class="view-content" style="max-width:1200px;">
+          <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <h1 style="color:#ef4444;">ForenSys OSINT & NetTracker</h1>
+              <p>Correlación de identidades digitales y mapeo de redes (Basado en Sherlock / Maltego).</p>
+            </div>
+            <button class="btn btn-secondary" onclick="navigateTo('suite')">Volver a Suite</button>
+          </div>
+
+          <div class="dash-grid" style="grid-template-columns: 300px 1fr; align-items:start;">
+            
+            <!-- Panel Izquierdo: Buscador y Detalles -->
+            <div style="display:flex; flex-direction:column; gap:1rem;">
+              <div class="panel">
+                <h2 style="color:var(--text); font-size:1.1rem; margin-bottom:1rem;">Analizar Objetivo</h2>
+                <form id="osint-form" onsubmit="runOSINT(event)">
+                  <input type="text" id="osint-query" class="input-field mb-1" placeholder="Ej: johndoe, johndoe@gmail.com, 192.168.1.1" required>
+                  <button type="submit" class="btn btn-primary btn-full" id="osint-btn">Iniciar Rastreo</button>
+                </form>
+              </div>
+
+              <div class="panel" id="osint-details-panel" style="display:none; flex:1;">
+                <h3 style="color:var(--accent-bright); font-size:1rem; margin-bottom:0.5rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem;">Detalles del Nodo</h3>
+                <div id="osint-node-details" style="font-size:0.9rem; word-break:break-all;">
+                  Selecciona un nodo en el grafo para ver detalles.
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel Derecho: Canvas del Grafo -->
+            <div class="panel" style="padding:0; overflow:hidden; position:relative; min-height:600px; display:flex; flex-direction:column;">
+              <div style="padding:1rem; background:rgba(0,0,0,0.5); border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; z-index:10;">
+                <h3 style="margin:0; font-size:1rem; color:var(--text-muted);">Red de Conexiones</h3>
+                <div style="font-size:0.8rem; display:flex; gap:1rem;">
+                  <span style="color:#ef4444;">● Objetivo/IP</span>
+                  <span style="color:#10b981;">● Email</span>
+                  <span style="color:#3b82f6;">● Social/Alias</span>
+                  <span style="color:#a855f7;">● Device</span>
+                </div>
+              </div>
+              
+              <div id="osint-network" style="flex:1; width:100%; height:100%; background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);">
+                <div id="osint-placeholder" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); color:var(--text-muted); text-align:center;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px; margin-bottom:1rem; opacity:0.5;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  <p>Esperando objetivo...</p>
+                </div>
+              </div>
+              
+              <div id="osint-loading" class="hidden" style="position:absolute; inset:0; background:rgba(15,23,42,0.8); display:flex; align-items:center; justify-content:center; z-index:20;">
+                <p style="color:var(--accent-bright); font-weight:600; font-size:1.2rem; animation: pulse 1.5s infinite;">Correlacionando bases de datos...</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
       <!-- ABOUT -->
       <div id="view-about" class="view">
@@ -344,7 +521,8 @@
       <button class="btn btn-danger" onclick="closeWebcamModal()">Cancelar</button>
     </div>
   </div>
-
+  <!-- Scripts -->
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
