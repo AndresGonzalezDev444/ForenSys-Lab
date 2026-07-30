@@ -1,0 +1,47 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "ripandatv",
+    "total_found": 8,
+    "findings": [
+        {
+            "platform": "F3.cool",
+            "url": "https://f3.cool/ripandatv/",
+            "status": "Found"
+        },
+        {
+            "platform": "Gravatar",
+            "url": "http://en.gravatar.com/ripandatv",
+            "status": "Found"
+        },
+        {
+            "platform": "HackerRank",
+            "url": "https://hackerrank.com/ripandatv",
+            "status": "Found"
+        },
+        {
+            "platform": "Pastebin",
+            "url": "https://pastebin.com/u/ripandatv",
+            "status": "Found"
+        },
+        {
+            "platform": "Sketchfab",
+            "url": "https://sketchfab.com/ripandatv",
+            "status": "Found"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@ripandatv",
+            "status": "Found"
+        },
+        {
+            "platform": "Velomania",
+            "url": "https://forum.velomania.ru/member.php?username=ripandatv",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/ripandatv",
+            "status": "Found"
+        }
+    ]
+}

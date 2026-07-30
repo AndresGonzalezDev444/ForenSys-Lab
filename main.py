@@ -307,56 +307,85 @@ class OSINTRequest(BaseModel):
 
 @app.post("/api/osint/analyze")
 async def analyze_osint(request: OSINTRequest):
-    import hashlib
-    # MOCK OSINT ENGINE FOR V1
-    # Simularemos la respuesta de herramientas como Sherlock o Maltego
+    from fastapi.responses import StreamingResponse
+    import asyncio
+    import queue
+    import subprocess
+    import threading
+    import sys
+    import json
+    
     query = request.query.lower().strip()
+    username = query.split("@")[0] if "@" in query else query
     
-    # Nodo Central (El objetivo)
-    nodes = [{"id": 1, "label": query, "group": "target", "title": f"Búsqueda Original: {query}"}]
-    edges = []
-    
-    # Generar algunos nodos relacionados basados en un hash simple del query para que sea determinista
-    h = int(hashlib.md5(query.encode()).hexdigest()[:8], 16)
-    
-    # Simular un perfil de correo
-    if "@" not in query:
-        email = f"{query}{h%100}@gmail.com"
-        nodes.append({"id": 2, "label": email, "group": "email", "title": "Correo asociado en brecha de datos"})
-        edges.append({"from": 1, "to": 2, "label": "vinculado a"})
-    else:
-        username = query.split("@")[0]
-        nodes.append({"id": 2, "label": username, "group": "alias", "title": "Alias extraído del correo"})
-        edges.append({"from": 1, "to": 2, "label": "alias probable"})
+    async def event_generator():
+        q = queue.Queue()
         
-    # Simular IPs y ubicaciones
-    ip1 = f"192.168.{h%255}.{(h//255)%255}"
-    nodes.append({"id": 3, "label": ip1, "group": "ip", "title": "Última IP conocida (Foro Hack)"})
-    edges.append({"from": 1, "to": 3, "label": "conexión directa"})
-    
-    # Simular Redes Sociales (Estilo Sherlock)
-    nodes.append({"id": 4, "label": "Twitter", "group": "social", "title": "Cuenta activa detectada"})
-    edges.append({"from": 1, "to": 4, "label": "perfil encontrado"})
-    
-    nodes.append({"id": 5, "label": "Github", "group": "social", "title": "Cuenta inactiva detectada"})
-    edges.append({"from": 1, "to": 5, "label": "perfil encontrado"})
-    
-    # Conexión secundaria (Grafo más complejo)
-    nodes.append({"id": 6, "label": f"{query}_admin", "group": "alias", "title": "Alias alternativo en la misma IP"})
-    edges.append({"from": 3, "to": 6, "label": "comparte IP"})
-    
-    # Simular un dispositivo
-    nodes.append({"id": 7, "label": "MacBook Pro", "group": "device", "title": "User-Agent frecuente"})
-    edges.append({"from": 3, "to": 7, "label": "fingerprint"})
+        def run_sherlock():
+            try:
+                os.makedirs("./reports", exist_ok=True)
+                raw_path = f"./reports/raw_{username}.txt"
+                json_path = f"./reports/osint_report_{username}.json"
+                
+                command = ["python", "-m", "sherlock_project", username, "--output", raw_path, "--print-all", "--no-color"]
+                creationflags = 0
+                if sys.platform == "win32":
+                    creationflags = subprocess.CREATE_NO_WINDOW
+                
+                process = subprocess.Popen(
+                    command,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    text=True,
+                    bufsize=1,
+                    creationflags=creationflags
+                )
+                
+                findings = []
+                for line in process.stdout:
+                    clean = line.strip()
+                    if not clean: continue
+                    q.put({"type": "log", "data": clean})
+                    
+                    if "[+]" in clean:
+                        parts = clean.replace("[+]", "").strip().split(":", 1)
+                        if len(parts) == 2:
+                            findings.append({
+                                "platform": parts[0].strip(),
+                                "url": parts[1].strip(),
+                                "status": "Found"
+                            })
+                process.wait()
+                
+                report = {
+                    "suite_module": "ForenSys OSINT & NetTracker",
+                    "target_username": username,
+                    "total_found": len(findings),
+                    "findings": findings
+                }
+                with open(json_path, "w", encoding="utf-8") as f:
+                    json.dump(report, f, indent=4, ensure_ascii=False)
+                
+                q.put({"type": "log", "data": f"[*] Escaneo completado. {len(findings)} coincidencias encontradas."})
+                q.put(None)
+            except Exception as e:
+                q.put({"type": "log", "data": f"[-] Error: {str(e)}"})
+                q.put(None)
+        
+        thread = threading.Thread(target=run_sherlock, daemon=True)
+        thread.start()
+        
+        while True:
+            try:
+                item = q.get_nowait()
+                if item is None:
+                    break
+                yield json.dumps(item) + "\n"
+            except queue.Empty:
+                await asyncio.sleep(0.1)
 
-    return {
-        "status": "success",
-        "query": query,
-        "graph": {
-            "nodes": nodes,
-            "edges": edges
-        }
-    }
+    return StreamingResponse(event_generator(), media_type="application/x-ndjson")
+
 
 from fastapi.responses import FileResponse
 import shutil

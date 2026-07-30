@@ -1,0 +1,32 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "andresgonzalezdev444",
+    "total_found": 5,
+    "findings": [
+        {
+            "platform": "F3.cool",
+            "url": "https://f3.cool/andresgonzalezdev444/",
+            "status": "Found"
+        },
+        {
+            "platform": "GitHub",
+            "url": "https://www.github.com/andresgonzalezdev444",
+            "status": "Found"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@andresgonzalezdev444",
+            "status": "Found"
+        },
+        {
+            "platform": "Velomania",
+            "url": "https://forum.velomania.ru/member.php?username=andresgonzalezdev444",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/andresgonzalezdev444",
+            "status": "Found"
+        }
+    ]
+}

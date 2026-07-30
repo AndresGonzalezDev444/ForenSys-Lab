@@ -635,80 +635,52 @@ async function runOSINT(event) {
     });
 
     if (res.ok) {
-      const data = await res.json();
-      
-      // Preparar datos para VisJS
-      const nodesData = data.graph.nodes.map(n => {
-        let color = '#3b82f6'; // default blue
-        if (n.group === 'target') color = '#ef4444';
-        else if (n.group === 'email') color = '#10b981';
-        else if (n.group === 'ip') color = '#f59e0b';
-        else if (n.group === 'device') color = '#a855f7';
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let buffer = '';
+
+      const consoleDiv = document.getElementById('osint-console');
+      consoleDiv.innerHTML = ''; // Limpiar consola
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
         
-        return {
-          id: n.id,
-          label: n.label,
-          title: n.title,
-          group: n.group,
-          color: { background: color, border: '#ffffff' },
-          font: { color: '#ffffff' },
-          shape: 'dot',
-          size: n.group === 'target' ? 25 : 15
-        };
-      });
-
-      const edgesData = data.graph.edges.map(e => {
-        return {
-          from: e.from,
-          to: e.to,
-          label: e.label,
-          color: { color: 'rgba(255,255,255,0.2)' },
-          font: { color: '#94a3b8', size: 10, align: 'middle' },
-          arrows: 'to'
-        };
-      });
-
-      const container = document.getElementById('osint-network');
-      const networkData = {
-        nodes: new vis.DataSet(nodesData),
-        edges: new vis.DataSet(edgesData)
-      };
-      
-      const options = {
-        interaction: { hover: true, tooltipDelay: 200 },
-        physics: {
-          forceAtlas2Based: { gravitationalConstant: -50, centralGravity: 0.01, springLength: 100, springConstant: 0.08 },
-          maxVelocity: 50,
-          solver: 'forceAtlas2Based',
-          timestep: 0.35,
-          stabilization: { iterations: 150 }
-        }
-      };
-
-      if (osintNetwork) {
-        osintNetwork.destroy();
-      }
-      osintNetwork = new vis.Network(container, networkData, options);
-
-      // Evento de clic en nodo
-      osintNetwork.on('click', function (params) {
-        if (params.nodes.length > 0) {
-          const nodeId = params.nodes[0];
-          const node = nodesData.find(n => n.id === nodeId);
-          if (node) {
-            detailsContent.innerHTML = `
-              <p style="margin-bottom:0.5rem;"><strong style="color:var(--text);">Identificador:</strong> ${node.label}</p>
-              <p style="margin-bottom:0.5rem;"><strong style="color:var(--text);">Tipo (Grupo):</strong> ${node.group.toUpperCase()}</p>
-              <p style="margin-bottom:0.5rem;"><strong style="color:var(--text);">Descripción:</strong> ${node.title}</p>
-              <p style="margin-top:1rem; color:var(--text-muted); font-size:0.8rem;"><i>Datos extraídos de fuentes OSINT simuladas para el prototipo.</i></p>
-            `;
+        buffer += decoder.decode(value, { stream: true });
+        const lines = buffer.split('\n');
+        
+        buffer = lines.pop(); // Keep incomplete line
+        
+        for (const line of lines) {
+          if (!line.trim()) continue;
+          try {
+            const data = JSON.parse(line);
+            if (data.type === 'log') {
+              const p = document.createElement('div');
+              let text = data.data;
+              
+              if (text.includes('[+]')) {
+                text = text.replace('[+]', '✅ [OK]');
+                p.style.color = '#4ade80'; // verde brillante
+                p.style.fontWeight = 'bold';
+              } else if (text.includes('[-]')) {
+                text = text.replace('[-]', '❌ [OFF]');
+                p.style.color = '#ef4444'; // rojo suave
+              } else if (text.startsWith('[*]')) {
+                p.style.color = '#facc15'; // amarillo
+              } else {
+                p.style.color = '#94a3b8'; // gris
+              }
+              
+              p.textContent = text;
+              consoleDiv.appendChild(p);
+              consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            }
+          } catch (e) {
+            console.error('Error parsing NDJSON line:', e);
           }
-        } else {
-          detailsContent.innerHTML = 'Selecciona un nodo en el grafo para ver detalles.';
         }
-      });
-      
-      detailsContent.innerHTML = 'Búsqueda completada. Selecciona un nodo en el grafo para ver detalles.';
+      }
       
     } else {
       alert("Error en el análisis OSINT");
