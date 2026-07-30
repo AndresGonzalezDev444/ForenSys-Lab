@@ -5,10 +5,9 @@ import type { SceneObject } from '../../types/scene';
 interface Props {
   objectData: SceneObject;
   isSelected: boolean;
-  onSelect: (id: string) => void;
 }
 
-export function ParametricWall({ objectData, isSelected, onSelect }: Props) {
+export function ParametricWall({ objectData, isSelected }: Props) {
   const { length, height, thickness, color } = objectData.properties;
 
   const geometry = useMemo(() => {
@@ -18,14 +17,7 @@ export function ParametricWall({ objectData, isSelected, onSelect }: Props) {
   }, [length, height, thickness]);
 
   return (
-    <mesh
-      position={objectData.position}
-      rotation={new THREE.Euler(...objectData.rotation)}
-      onClick={(e) => {
-        e.stopPropagation();
-        if (!objectData.locked) onSelect(objectData.id);
-      }}
-    >
+    <mesh>
       <primitive object={geometry} attach="geometry" />
       <meshStandardMaterial color={isSelected ? '#4a90e2' : color} roughness={0.9} />
       <lineSegments>

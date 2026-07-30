@@ -1,13 +1,8 @@
 {
     "suite_module": "ForenSys OSINT & NetTracker",
     "target_username": "ripandatv",
-    "total_found": 8,
+    "total_found": 6,
     "findings": [
-        {
-            "platform": "F3.cool",
-            "url": "https://f3.cool/ripandatv/",
-            "status": "Found"
-        },
         {
             "platform": "Gravatar",
             "url": "http://en.gravatar.com/ripandatv",
@@ -16,11 +11,6 @@
         {
             "platform": "HackerRank",
             "url": "https://hackerrank.com/ripandatv",
-            "status": "Found"
-        },
-        {
-            "platform": "Pastebin",
-            "url": "https://pastebin.com/u/ripandatv",
             "status": "Found"
         },
         {
@@ -34,8 +24,8 @@
             "status": "Found"
         },
         {
-            "platform": "Velomania",
-            "url": "https://forum.velomania.ru/member.php?username=ripandatv",
+            "platform": "Trakt",
+            "url": "https://www.trakt.tv/users/ripandatv",
             "status": "Found"
         },
         {

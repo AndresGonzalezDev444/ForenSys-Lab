@@ -1,21 +1,16 @@
 {
     "suite_module": "ForenSys OSINT & NetTracker",
     "target_username": "zebax140",
-    "total_found": 5,
+    "total_found": 4,
     "findings": [
-        {
-            "platform": "F3.cool",
-            "url": "https://f3.cool/zebax140/",
-            "status": "Found"
-        },
         {
             "platform": "TikTok",
             "url": "https://www.tiktok.com/@zebax140",
             "status": "Found"
         },
         {
-            "platform": "Velomania",
-            "url": "https://forum.velomania.ru/member.php?username=zebax140",
+            "platform": "Trakt",
+            "url": "https://www.trakt.tv/users/zebax140",
             "status": "Found"
         },
         {

@@ -2,18 +2,43 @@ let currentToken = null;
 let cameraActive = false;
 let cachedCameraDevices = [];
 
-function navigateTo(viewId) {
+// ==========================================
+// FORENSYSLAB v2.0 - Core UI Logic
+// ==========================================
 
+// --- Navigation & View State ---
+function navigateTo(viewId) {
   if (viewId === 'login') {
     document.getElementById('view-login').classList.remove('hidden');
     document.getElementById('app-layout').classList.add('hidden');
     return;
   }
 
+  // Handle specific navigation rules
+  if (viewId === 'dashboard') {
+    document.getElementById('header-page-title').textContent = 'DASHBOARD';
+    document.getElementById('header-page-sub').textContent = 'Centro de Control Forense';
+  } else if (viewId === 'suspects') {
+    document.getElementById('header-page-title').textContent = 'CASOS ACTIVOS';
+    document.getElementById('header-page-sub').textContent = 'Gestión de Sospechosos';
+  } else if (viewId === 'suite') {
+    document.getElementById('header-page-title').textContent = 'SUITE FORENSYS';
+    document.getElementById('header-page-sub').textContent = 'Herramientas de Análisis';
+  } else if (viewId === 'about') {
+    document.getElementById('header-page-title').textContent = 'SISTEMA';
+    document.getElementById('header-page-sub').textContent = 'Configuración y Acerca De';
+  } else if (viewId === 'cyber') {
+    document.getElementById('header-page-title').textContent = 'METAINSPECT';
+    document.getElementById('header-page-sub').textContent = 'Análisis de Evidencia Digital';
+  } else if (viewId === 'osint') {
+    document.getElementById('header-page-title').textContent = 'NETTRACKER';
+    document.getElementById('header-page-sub').textContent = 'Ciberinteligencia Digital';
+  }
+
   document.getElementById('view-login').classList.add('hidden');
   document.getElementById('app-layout').classList.remove('hidden');
 
-  document.querySelectorAll('#app-layout .view').forEach(el => {
+  document.querySelectorAll('.main-area .view').forEach(el => {
     el.classList.remove('active');
   });
 
@@ -23,10 +48,262 @@ function navigateTo(viewId) {
   }
 
   document.querySelectorAll('.sidebar-nav a').forEach(el => el.classList.remove('active'));
-  const navLink = document.getElementById(`nav-${viewId}`);
+  
+  // Map specific modules to their parent sidebar items if they don't have one
+  let activeNavId = `nav-${viewId}`;
+  if (viewId === 'cyber' || viewId === 'osint') {
+    activeNavId = 'nav-herramientas';
+  }
+  
+  const navLink = document.getElementById(activeNavId);
   if (navLink) navLink.classList.add('active');
 }
 
+function toggleSidebar() {
+  const sidebar = document.getElementById('main-sidebar');
+  if (sidebar.style.display === 'flex') {
+    sidebar.style.display = 'none';
+  } else {
+    sidebar.style.display = 'flex';
+  }
+}
+
+// --- Real-time Clock ---
+function updateClock() {
+  const now = new Date();
+  
+  // Format Time (HH:MM:SS)
+  const timeStr = now.toLocaleTimeString('es-ES', { 
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false 
+  });
+  
+  // Format Date (DD MMM YYYY)
+  const options = { day: '2-digit', month: 'short', year: 'numeric' };
+  const dateStr = now.toLocaleDateString('es-ES', options).toUpperCase();
+  
+  const clockEl = document.getElementById('header-clock');
+  const dateEl = document.getElementById('header-date');
+  
+  if (clockEl) clockEl.textContent = timeStr;
+  if (dateEl) dateEl.textContent = dateStr;
+}
+
+setInterval(updateClock, 1000);
+updateClock(); // Initial call
+
+// ==========================================
+// AFIS - Biometric Fingerprint System (Simulated)
+// ==========================================
+
+function handleFingerprintUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const previewContainer = document.getElementById('afis-query-preview');
+    const img = document.createElement('img');
+    img.src = e.target.result;
+    
+    // Add scanning effect class
+    previewContainer.innerHTML = '';
+    previewContainer.appendChild(img);
+    previewContainer.classList.add('scan-active');
+    
+    // Simulate quality calculation
+    setTimeout(() => {
+      previewContainer.classList.remove('scan-active');
+      
+      const qualityEl = document.getElementById('afis-query-quality-val');
+      const stars = document.getElementById('afis-query-stars').children;
+      
+      // Random quality between Good and Excellent
+      const isExcellent = Math.random() > 0.3;
+      
+      if (isExcellent) {
+        qualityEl.textContent = 'EXCELENTE';
+        qualityEl.className = 'value excellent';
+        for(let i=0; i<5; i++) stars[i].className = 'quality-star';
+      } else {
+        qualityEl.textContent = 'BUENA';
+        qualityEl.className = 'value good';
+        for(let i=0; i<4; i++) stars[i].className = 'quality-star';
+        stars[4].className = 'quality-star empty';
+      }
+      
+      // Enable compare button
+      document.getElementById('afis-compare-btn').disabled = false;
+      
+    }, 1200);
+  }
+  reader.readAsDataURL(file);
+}
+
+function startComparison() {
+  const btn = document.getElementById('afis-compare-btn');
+  btn.disabled = true;
+  btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Procesando...`;
+  
+  // Add scanning overlay to whole panel
+  const resultsPanel = document.getElementById('afis-results-panel');
+  const scanningOverlay = document.createElement('div');
+  scanningOverlay.className = 'afis-scanning';
+  scanningOverlay.innerHTML = `
+    <div class="afis-scanning-text">EXTRAYENDO MINUCIAS</div>
+    <div class="afis-scanning-bar"></div>
+  `;
+  resultsPanel.appendChild(scanningOverlay);
+
+  // Phase 1: Extract Minutiae
+  setTimeout(() => {
+    scanningOverlay.querySelector('.afis-scanning-text').textContent = 'CONSULTANDO BASE DE DATOS';
+    
+    // Phase 2: Match DB
+    setTimeout(() => {
+      // Setup DB preview side
+      const dbPreview = document.getElementById('afis-db-preview');
+      dbPreview.classList.add('scan-active');
+      
+      scanningOverlay.querySelector('.afis-scanning-text').textContent = 'CALCULANDO COINCIDENCIA';
+      
+      // Phase 3: Results
+      setTimeout(() => {
+        dbPreview.classList.remove('scan-active');
+        resultsPanel.removeChild(scanningOverlay);
+        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Nueva Comparación`;
+        btn.disabled = false;
+        
+        // Show Live Badge
+        document.getElementById('afis-live-badge').style.display = 'flex';
+        
+        // Set DB Quality (Excellent)
+        const dbQuality = document.getElementById('afis-db-quality-val');
+        dbQuality.textContent = 'EXCELENTE';
+        dbQuality.className = 'value excellent';
+        const dbStars = document.getElementById('afis-db-stars').children;
+        for(let i=0; i<5; i++) dbStars[i].className = 'quality-star';
+        
+        // Generate Results
+        const score = (75 + Math.random() * 24.5).toFixed(2);
+        let confText = 'ALTA';
+        let confColor = 'var(--low)';
+        if(score > 90) { confText = 'MUY ALTA'; }
+        else if (score < 80) { confText = 'MODERADA'; confColor = 'var(--medium)'; }
+        
+        document.getElementById('afis-score').textContent = score + '%';
+        
+        const confSpan = document.getElementById('afis-confidence');
+        confSpan.textContent = confText;
+        confSpan.style.color = confColor;
+        
+        // Populate random minutiae data
+        document.getElementById('afis-minutiae-match').textContent = Math.floor(60 + Math.random() * 40);
+        document.getElementById('afis-minutiae-disc').textContent = Math.floor(2 + Math.random() * 6);
+        document.getElementById('afis-rotation').textContent = (Math.random() * 5).toFixed(1) + '°';
+        document.getElementById('afis-translation').textContent = Math.floor(5 + Math.random() * 15) + ' px';
+        document.getElementById('afis-scale').textContent = (95 + Math.random() * 5).toFixed(1) + '%';
+        
+        const qQual = document.getElementById('afis-query-quality-val').textContent;
+        const qQEl = document.getElementById('afis-q-quality');
+        qQEl.textContent = qQual;
+        qQEl.className = 'afis-result-value ' + (qQual === 'EXCELENTE' ? 'highlight' : '');
+        
+        document.getElementById('afis-m-quality').textContent = 'EXCELENTE';
+        document.getElementById('afis-time').textContent = (0.1 + Math.random() * 0.4).toFixed(2) + ' seg';
+        
+        // Show detail button
+        document.getElementById('afis-detail-btn').style.display = 'flex';
+        
+        // Add to recent activity
+        addRecentActivity('Comparación Biométrica AFIS', 'blue', `${score}% MATCH`);
+        
+      }, 1000);
+    }, 1000);
+  }, 1000);
+}
+
+// ==========================================
+// Drag and Drop Logic
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  const dropzone = document.getElementById('afis-dropzone');
+  
+  if (dropzone) {
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('dragover');
+    });
+
+    dropzone.addEventListener('dragleave', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        const fileInput = document.getElementById('afis-file-input');
+        // We can't directly assign to FileList, so we manually trigger the upload logic
+        const fakeEvent = { target: { files: [e.dataTransfer.files[0]] } };
+        handleFingerprintUpload(fakeEvent);
+      }
+    });
+  }
+});
+
+
+// ==========================================
+// ACTIVITY LOGIC (Simulated)
+// ==========================================
+function addRecentActivity(text, color, meta = null) {
+  const container = document.querySelector('.sidebar-activity');
+  if(!container) return;
+  
+  const now = new Date();
+  const timeStr = now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  
+  const item = document.createElement('div');
+  item.className = 'sidebar-activity-item fade-in';
+  
+  let metaHtml = '';
+  if (meta) {
+    metaHtml = `<div style="font-size:0.5rem;font-family:monospace;color:var(--accent-bright);margin-top:2px;">${meta}</div>`;
+  }
+  
+  item.innerHTML = `
+    <div class="sidebar-activity-dot ${color}"></div>
+    <div>
+      <div class="sidebar-activity-text">${text}</div>
+      ${metaHtml}
+      <span class="sidebar-activity-time">${timeStr}</span>
+    </div>
+  `;
+  
+  // Insert after the title
+  const title = container.querySelector('.sidebar-activity-title');
+  title.insertAdjacentElement('afterend', item);
+  
+  // Remove oldest if more than 3
+  const items = container.querySelectorAll('.sidebar-activity-item');
+  if(items.length > 3) {
+    items[items.length - 1].remove();
+  }
+}
+
+// Initialize dynamic footer data on load
+document.addEventListener('DOMContentLoaded', () => {
+  if(document.getElementById('footer-cases')) {
+    document.getElementById('footer-cases').textContent = Math.floor(Math.random() * 10) + 1;
+    document.getElementById('footer-evidence').textContent = (1000 + Math.floor(Math.random() * 500)).toLocaleString();
+    document.getElementById('footer-analysis').textContent = Math.floor(Math.random() * 50);
+  }
+});
+
+// ==========================================
+// CORE AUTH LOGIC
+// ==========================================
 async function handleLogin(e) {
   e.preventDefault();
   const u = document.getElementById('username').value;
@@ -47,12 +324,24 @@ async function handleLogin(e) {
       const data = await res.json();
       currentToken = data.access_token;
       document.getElementById('login-error').classList.add('hidden');
-      const avatar = document.getElementById('sidebar-avatar');
+      
+      // Update UI elements with user data
+      const avatar = document.getElementById('header-avatar');
       if (avatar) avatar.textContent = u.charAt(0).toUpperCase();
-      const nameEl = document.getElementById('sidebar-username');
-      if (nameEl) nameEl.textContent = u;
+      
+      const nameEl = document.getElementById('header-user-name');
+      if (nameEl) nameEl.textContent = u.toUpperCase();
+      
+      const sidebarAvatar = document.getElementById('sidebar-avatar');
+      if(sidebarAvatar) sidebarAvatar.textContent = u.charAt(0).toUpperCase();
+      
+      const sidebarName = document.getElementById('sidebar-username');
+      if(sidebarName) sidebarName.textContent = u.toUpperCase();
+      
       navigateTo('dashboard');
       loadSuspects();
+      
+      addRecentActivity('Inicio de sesión en el sistema', 'green');
     } else {
       document.getElementById('login-error').classList.remove('hidden');
     }
@@ -67,6 +356,9 @@ function logout() {
   navigateTo('login');
 }
 
+// ==========================================
+// SUSPECTS LOGIC
+// ==========================================
 async function loadSuspects() {
   if (!currentToken) return;
   try {
@@ -300,16 +592,6 @@ async function openWebcamModal(suspectId = null) {
     alert('No se pudo acceder a la camara: ' + err.message);
     closeWebcamModal();
   }
-  return;
-  navigator.mediaDevices.getUserMedia({ video: true })
-    .then(stream => {
-      webcamStream = stream;
-      video.srcObject = stream;
-    })
-    .catch(err => {
-      alert('No se pudo acceder a la cámara: ' + err.message);
-      closeWebcamModal();
-    });
 }
 
 function takeWebcamPhoto() {
@@ -422,55 +704,6 @@ async function importDB(event) {
   event.target.value = '';
 }
 
-async function exportDB() {
-  if (!currentToken) return;
-  try {
-    const res = await fetch('/api/database/export', {
-      headers: { 'Authorization': `Bearer ${currentToken}` }
-    });
-    if (res.ok) {
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'ciberforense.db';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    } else {
-      alert("Error al exportar la base de datos.");
-    }
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-async function importDB(event) {
-  if (!currentToken) return;
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const formData = new FormData();
-  formData.append('file', file);
-
-  try {
-    const res = await fetch('/api/database/import', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${currentToken}` },
-      body: formData
-    });
-    if (res.ok) {
-      alert("Base de datos importada exitosamente. Recargando...");
-      window.location.reload();
-    } else {
-      alert("Error al importar la base de datos.");
-    }
-  } catch (err) {
-    console.error(err);
-  }
-  event.target.value = '';
-}
-
 // ==========================================
 // FORENSYS CYBER & METAINSPECT LOGIC
 // ==========================================
@@ -501,6 +734,8 @@ async function analyzeCyberFile(event) {
     if (res.ok) {
       const data = await res.json();
       currentCyberData = data;
+      
+      addRecentActivity('Análisis MetaInspect', 'green', file.name);
       
       // Update File Integrity info
       const basicList = document.getElementById('cyber-basic-info');
@@ -605,8 +840,6 @@ function exportCyber() {
 // ==========================================
 // FORENSYS OSINT & NETTRACKER LOGIC
 // ==========================================
-let osintNetwork = null;
-
 async function runOSINT(event) {
   event.preventDefault();
   const query = document.getElementById('osint-query').value;
@@ -614,15 +847,15 @@ async function runOSINT(event) {
 
   const btn = document.getElementById('osint-btn');
   const loading = document.getElementById('osint-loading');
-  const placeholder = document.getElementById('osint-placeholder');
   const detailsPanel = document.getElementById('osint-details-panel');
   const detailsContent = document.getElementById('osint-node-details');
   
   btn.disabled = true;
   loading.classList.remove('hidden');
-  if (placeholder) placeholder.style.display = 'none';
   detailsPanel.style.display = 'block';
   detailsContent.innerHTML = 'Analizando red...';
+  
+  addRecentActivity('Rastreo OSINT', 'yellow', `Objetivo: ${query}`);
 
   try {
     const res = await fetch('/api/osint/analyze', {

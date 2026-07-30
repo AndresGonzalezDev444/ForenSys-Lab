@@ -1,0 +1,42 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "johansbt",
+    "total_found": 7,
+    "findings": [
+        {
+            "platform": "Discord",
+            "url": "https://discord.com",
+            "status": "Found"
+        },
+        {
+            "platform": "Snapchat",
+            "url": "https://www.snapchat.com/add/johansbt",
+            "status": "Found"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@johansbt",
+            "status": "Found"
+        },
+        {
+            "platform": "Trakt",
+            "url": "https://www.trakt.tv/users/johansbt",
+            "status": "Found"
+        },
+        {
+            "platform": "Wattpad",
+            "url": "https://www.wattpad.com/user/johansbt",
+            "status": "Found"
+        },
+        {
+            "platform": "Xbox Gamertag",
+            "url": "https://xboxgamertag.com/search/johansbt",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/johansbt",
+            "status": "Found"
+        }
+    ]
+}

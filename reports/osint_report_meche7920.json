@@ -1,0 +1,27 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "meche7920",
+    "total_found": 4,
+    "findings": [
+        {
+            "platform": "Snapchat",
+            "url": "https://www.snapchat.com/add/meche7920",
+            "status": "Found"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@meche7920",
+            "status": "Found"
+        },
+        {
+            "platform": "Trakt",
+            "url": "https://www.trakt.tv/users/meche7920",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/meche7920",
+            "status": "Found"
+        }
+    ]
+}

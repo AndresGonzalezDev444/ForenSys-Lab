@@ -1,0 +1,22 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "johansbtes",
+    "total_found": 3,
+    "findings": [
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@johansbtes",
+            "status": "Found"
+        },
+        {
+            "platform": "Trakt",
+            "url": "https://www.trakt.tv/users/johansbtes",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/johansbtes",
+            "status": "Found"
+        }
+    ]
+}

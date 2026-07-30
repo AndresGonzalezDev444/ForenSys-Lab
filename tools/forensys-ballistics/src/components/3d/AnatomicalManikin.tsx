@@ -1,35 +1,24 @@
-// src/components/3d/AnatomicalManikin.tsx (Corregido el warning de 'posture')
 import * as THREE from 'three';
 import type { SceneObject } from '../../types/scene';
 
 interface Props {
   objectData: SceneObject;
   isSelected: boolean;
-  onSelect: (id: string) => void;
 }
 
-export function AnatomicalManikin({ objectData, isSelected, onSelect }: Props) {
-  const { 
-    height = 1.75, 
-    // posture, // Eliminado o comentado si no se usa de momento para evitar warning de TS
-    showSagittal = false, 
-    showCoronal = false, 
+export function AnatomicalManikin({ objectData, isSelected }: Props) {
+  const {
+    height = 1.75,
+    showSagittal = false,
+    showCoronal = false,
     showTransverse = false,
-    color = '#8e8e93' 
+    color = '#8e8e93',
   } = objectData.properties;
 
   const scaleY = height / 1.75;
 
   return (
-    <group 
-      position={objectData.position}
-      rotation={new THREE.Euler(...objectData.rotation)}
-      scale={[1, scaleY, 1]}
-      onClick={(e) => {
-        e.stopPropagation();
-        if (!objectData.locked) onSelect(objectData.id);
-      }}
-    >
+    <group scale={[1, scaleY, 1]}>
       <mesh position={[0, 1.55, 0]}>
         <sphereGeometry args={[0.12, 16, 16]} />
         <meshStandardMaterial color={isSelected ? '#4a90e2' : color} roughness={0.7} />
@@ -40,11 +29,11 @@ export function AnatomicalManikin({ objectData, isSelected, onSelect }: Props) {
         <meshStandardMaterial color={isSelected ? '#4a90e2' : color} roughness={0.7} />
       </mesh>
 
-      <mesh position={[-0.30, 1.15, 0]}>
+      <mesh position={[-0.3, 1.15, 0]}>
         <cylinderGeometry args={[0.07, 0.06, 0.65, 12]} />
         <meshStandardMaterial color={isSelected ? '#4a90e2' : color} roughness={0.7} />
       </mesh>
-      <mesh position={[0.30, 1.15, 0]}>
+      <mesh position={[0.3, 1.15, 0]}>
         <cylinderGeometry args={[0.07, 0.06, 0.65, 12]} />
         <meshStandardMaterial color={isSelected ? '#4a90e2' : color} roughness={0.7} />
       </mesh>

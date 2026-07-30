@@ -1,8 +1,10 @@
-// src/store/useSceneStore.ts (Actualizado con el Maniquí por defecto)
+// src/store/useSceneStore.ts (Fase 3: + modo de transformación)
 import { create } from 'zustand';
 import { Vector3 } from 'three';
 import type { SceneObject } from '../types/scene';
 import { calculateMeasurement, type MeasurementResult } from '../core/math/measurements';
+
+type TransformMode = 'translate' | 'rotate';
 
 interface SceneState {
   objects: Record<string, SceneObject>;
@@ -11,14 +13,16 @@ interface SceneState {
   measurements: MeasurementResult[];
   isMeasuring: boolean;
   measurePoints: [number, number, number][];
+  transformMode: TransformMode;
 
   addObject: (obj: SceneObject) => void;
   updateObjectTransform: (id: string, position: [number, number, number], rotation: [number, number, number]) => void;
-  updateObjectProperties: (id: string, properties: Record<string, any>) => void;
+  updateObjectProperties: (id: string, properties: Record<string, unknown>) => void;
   setSelectedObject: (id: string | null) => void;
   toggleMeasureMode: () => void;
   addMeasurementPoint: (point: [number, number, number]) => void;
   clearMeasurements: () => void;
+  setTransformMode: (mode: TransformMode) => void;
 }
 
 export const useSceneStore = create<SceneState>((set) => ({
@@ -77,9 +81,10 @@ export const useSceneStore = create<SceneState>((set) => ({
   measurements: [],
   isMeasuring: false,
   measurePoints: [],
+  transformMode: 'translate',
 
-  addObject: (obj) => set((state) => ({ 
-    objects: { ...state.objects, [obj.id]: obj } 
+  addObject: (obj) => set((state) => ({
+    objects: { ...state.objects, [obj.id]: obj }
   })),
 
   updateObjectTransform: (id, position, rotation) => set((state) => ({
@@ -101,9 +106,9 @@ export const useSceneStore = create<SceneState>((set) => ({
 
   setSelectedObject: (id) => set({ selectedObjectId: id }),
 
-  toggleMeasureMode: () => set((state) => ({ 
-    isMeasuring: !state.isMeasuring, 
-    measurePoints: [] 
+  toggleMeasureMode: () => set((state) => ({
+    isMeasuring: !state.isMeasuring,
+    measurePoints: []
   })),
 
   addMeasurementPoint: (point) => set((state) => {
@@ -112,7 +117,7 @@ export const useSceneStore = create<SceneState>((set) => ({
       const p1 = new Vector3(...newPoints[0]);
       const p2 = new Vector3(...newPoints[1]);
       const measurement = calculateMeasurement(p1, p2);
-      
+
       return {
         measurements: [...state.measurements, measurement],
         measurePoints: [],
@@ -122,5 +127,7 @@ export const useSceneStore = create<SceneState>((set) => ({
     return { measurePoints: newPoints };
   }),
 
-  clearMeasurements: () => set({ measurements: [], measurePoints: [] })
+  clearMeasurements: () => set({ measurements: [], measurePoints: [] }),
+
+  setTransformMode: (mode) => set({ transformMode: mode }),
 }));

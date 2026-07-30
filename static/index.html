@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ForenSys Lab V1</title>
+  <meta name="description" content="ForensysLab v2.0 — Sistema Digital de Ciencias Forenses. Centro de Control para análisis biométrico, inteligencia digital y procesamiento de evidencia.">
+  <title>ForensysLab v2.0 — Digital Forensics System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-  <!-- ===== LOGIN VIEW (full screen) ===== -->
+
+  <!-- ===== LOGIN VIEW ===== -->
   <div id="view-login" class="view active">
     <div class="login-glow-top"></div>
     <div class="login-glow-bottom"></div>
@@ -20,11 +22,11 @@
         <div class="login-icon">
           <img src="forensys-vision.png" alt="ForenSys Vision" class="login-logo-img">
         </div>
-        <h1>ForenSys Lab V1</h1>
-        <p>Sistema de Inteligencia Forense Digital</p>
+        <h1>ForensysLab v2.0</h1>
+        <p>Digital Forensics System</p>
         <div class="login-status">
           <span class="sidebar-status-dot"></span>
-          Sistema Operativo
+          Sistema Operativo — Conexión Cifrada
         </div>
       </div>
 
@@ -34,21 +36,19 @@
         </div>
         <form id="login-form" onsubmit="handleLogin(event)">
           <div class="mb-1">
-            <label class="text-muted" style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:0.375rem;">Usuario</label>
+            <label class="text-muted" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:0.375rem;">Usuario</label>
             <div class="input-icon-wrapper">
               <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
               </svg>
               <input type="text" id="username" class="input-field with-icon" placeholder="Ingresa tu usuario" required autocomplete="username" autofocus>
             </div>
           </div>
           <div class="mb-1">
-            <label class="text-muted" style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:0.375rem;">Contraseña</label>
+            <label class="text-muted" style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;display:block;margin-bottom:0.375rem;">Contraseña</label>
             <div class="input-icon-wrapper">
               <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
               <input type="password" id="password" class="input-field with-icon" placeholder="••••••••" required autocomplete="current-password">
             </div>
@@ -61,418 +61,911 @@
             Acceder al Sistema
           </button>
         </form>
-        <div class="login-footer">FORENSYS LAB V1 • USO ACADÉMICO</div>
+        <div class="login-footer">FORENSYSLAB v2.0 • DIGITAL FORENSICS SYSTEM</div>
       </div>
     </div>
   </div>
 
-  <!-- ===== APP LAYOUT (sidebar + content) ===== -->
+  <!-- ===== APP LAYOUT ===== -->
   <div id="app-layout" class="app-layout hidden">
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <div class="sidebar-logo">
-          <img src="/static/forensys-vision.png" alt="ForenSys Lab" class="sidebar-logo-img">
+
+    <!-- ===== TOP HEADER BAR ===== -->
+    <header class="top-header">
+      <div class="header-logo-section">
+        <div class="header-logo-icon">
+          <img src="forensys-vision.png" alt="ForensysLab">
+        </div>
+        <div class="header-logo-text">
+          <span class="header-logo-title">FORENSYSLAB</span>
+          <span class="header-logo-sub">Digital Forensics System</span>
         </div>
       </div>
 
-      <div class="sidebar-status">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-        </svg>
-        <span class="sidebar-status-label">SISTEMA ACTIVO</span>
-        <span class="sidebar-status-indicator"></span>
+      <button class="header-hamburger" onclick="toggleSidebar()" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <div class="header-title-section">
+        <!-- Shield Badge -->
+        <div class="header-badge">
+          <svg viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 3L5 15v20c0 16.5 10.7 31.9 25 36 14.3-4.1 25-19.5 25-36V15L30 3z" fill="rgba(0,102,255,0.1)" stroke="rgba(0,102,255,0.4)" stroke-width="1.5"/>
+            <path d="M30 12L12 21v14c0 12 7.8 23.2 18 26.2 10.2-3 18-14.2 18-26.2V21L30 12z" fill="none" stroke="rgba(0,212,255,0.25)" stroke-width="1"/>
+            <text x="30" y="42" text-anchor="middle" fill="rgba(0,212,255,0.5)" font-size="16" font-weight="700" font-family="monospace">FL</text>
+          </svg>
+        </div>
+        <div>
+          <div class="header-page-title" id="header-page-title">DASHBOARD</div>
+          <div class="header-page-sub" id="header-page-sub">Centro de Control Forense</div>
+        </div>
       </div>
 
-      <nav class="sidebar-nav">
-        <a onclick="navigateTo('dashboard')" id="nav-dashboard" class="active">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-          </svg>
-          <span>Dashboard</span>
-          <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </a>
-        <a onclick="navigateTo('suspects')" id="nav-suspects">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-          <span>Gestión de Sospechosos</span>
-          <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </a>
+      <div class="header-spacer"></div>
 
-        <a onclick="navigateTo('suite')" id="nav-suite">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
-          </svg>
-          <span>Suite ForenSys</span>
-          <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </a>
-
-        <a onclick="navigateTo('about')" id="nav-about">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
-          </svg>
-          <span>Acerca de</span>
-          <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </a>
-      </nav>
-
-      <div class="sidebar-footer">
-        <div class="sidebar-user">
-          <div class="sidebar-avatar" id="sidebar-avatar">U</div>
-          <div class="sidebar-user-info">
-            <div class="sidebar-user-name" id="sidebar-username">Usuario</div>
-            <div class="sidebar-user-role" id="sidebar-role">Operador</div>
+      <div class="header-info-group">
+        <!-- System Status -->
+        <div class="header-info-item system-status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div>
+            <div class="header-info-label">Sistema Seguro</div>
+            <div class="header-info-value">Conexión Cifrada</div>
           </div>
         </div>
-        <div style="display:flex; gap:0.5rem; margin-bottom:0.5rem;">
-          <button onclick="exportDB()" class="btn btn-secondary flex-1" style="font-size:0.7rem; padding: 0.5rem;" title="Exportar BD">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </button>
-          <button onclick="document.getElementById('import-db-input').click()" class="btn btn-secondary flex-1" style="font-size:0.7rem; padding: 0.5rem;" title="Importar BD">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-          </button>
-          <input type="file" id="import-db-input" style="display:none;" accept=".db" onchange="importDB(event)">
+
+        <!-- Clock -->
+        <div class="header-clock">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <div>
+            <div class="header-clock-time" id="header-clock">--:--:--</div>
+            <div class="header-clock-date" id="header-date">-- --- ----</div>
+          </div>
         </div>
-        <button onclick="logout()" class="btn btn-danger btn-full" style="font-size:0.75rem;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
-          </svg>
-          Cerrar Sesión
-        </button>
+
+        <!-- User -->
+        <div class="header-user" id="header-user-section">
+          <div class="header-user-avatar" id="header-avatar">A</div>
+          <div class="header-user-info">
+            <div class="header-user-name" id="header-user-name">ADMIN</div>
+            <div class="header-user-role" id="header-user-role">Investigador</div>
+          </div>
+          <svg class="header-user-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
       </div>
-    </aside>
+    </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="main-area">
+    <div class="app-body">
 
-      <!-- DASHBOARD -->
-      <div id="view-dashboard" class="view active">
-        <div class="view-content">
-          <div class="page-header">
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="sidebar" id="main-sidebar">
+
+        <!-- System Status -->
+        <div class="sidebar-system-status">
+          <div class="sidebar-status-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span class="sidebar-status-dot"></span>
+            <span class="sidebar-status-label">Sistema Activo</span>
+          </div>
+          <div class="sidebar-access-level">Nivel de acceso: <span id="sidebar-access-level">ADMIN</span></div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+          <a onclick="navigateTo('dashboard')" id="nav-dashboard" class="active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Dashboard</span>
+            <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+          <a onclick="navigateTo('suspects')" id="nav-suspects">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Sujetos</span>
+            <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+          <a onclick="navigateTo('suspects')" id="nav-evidencias">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Evidencias</span>
+            <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+          <a onclick="navigateTo('suite')" id="nav-suite">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span>Análisis Rápido</span>
+            <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+          <a onclick="navigateTo('about')" id="nav-reportes">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            <span>Reportes</span>
+            <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+
+          <div class="sidebar-nav-label">Herramientas</div>
+
+          <a onclick="navigateTo('suite')" id="nav-herramientas">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+            <span>Suite ForenSys</span>
+            <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+          <a onclick="navigateTo('about')" id="nav-about">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>Acerca de</span>
+            <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+          </a>
+        </nav>
+
+        <!-- Activity -->
+        <div class="sidebar-activity">
+          <div class="sidebar-activity-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:10px;height:10px;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            Actividad Reciente
+          </div>
+          <div class="sidebar-activity-item">
+            <div class="sidebar-activity-dot green"></div>
             <div>
-              <h1>Panel de Laboratorio</h1>
-              <p id="dashboard-welcome">Bienvenido al sistema • Análisis en entorno seguro</p>
+              <div class="sidebar-activity-text">Nueva Huella Cargada</div>
+              <span class="sidebar-activity-time" id="activity-time-1">14:26:21</span>
             </div>
           </div>
+          <div class="sidebar-activity-item">
+            <div class="sidebar-activity-dot blue"></div>
+            <div>
+              <div class="sidebar-activity-text">Comparación Realizada</div>
+              <span class="sidebar-activity-time" id="activity-time-2">14:25:13</span>
+            </div>
+          </div>
+          <div class="sidebar-activity-item">
+            <div class="sidebar-activity-dot yellow"></div>
+            <div>
+              <div class="sidebar-activity-text">Módulo OSINT Ejecutado</div>
+              <span class="sidebar-activity-time" id="activity-time-3">14:20:45</span>
+            </div>
+          </div>
+          <a class="sidebar-activity-link">VER TODA LA ACTIVIDAD</a>
+        </div>
 
-          <div class="dash-grid">
-            <div class="panel">
-              <h2 style="color:var(--accent-bright);margin-bottom:1rem;">Cotejo Dactilar</h2>
-              <p class="text-muted mb-1">Sube una huella dactilar encontrada en la escena para compararla con los registros de sospechosos.</p>
-              <input type="file" class="input-field mb-1" accept="image/*">
-              <button class="btn btn-primary btn-full" onclick="alert('Funcionalidad de Cotejo Dactilar en desarrollo...')">Iniciar Comparación</button>
+        <!-- Sidebar Footer -->
+        <div class="sidebar-footer">
+          <div class="sidebar-user">
+            <div class="sidebar-avatar" id="sidebar-avatar">U</div>
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name" id="sidebar-username">Usuario</div>
+              <div class="sidebar-user-role" id="sidebar-role">Operador</div>
             </div>
-            <div class="panel">
-              <h2 style="color:var(--accent-bright);margin-bottom:1rem;">Análisis de Informe (IA Beta)</h2>
-              <p class="text-muted mb-1">La IA analizará el texto del informe para buscar coincidencias de conducta.</p>
-              <textarea class="input-field mb-1" rows="4" placeholder="Pega aquí el informe..."></textarea>
-              <button class="btn btn-secondary btn-full" onclick="alert('Análisis de Informe en desarrollo...')">Analizar Informe</button>
-            </div>
-            <div class="panel" style="grid-column: 1 / -1;">
-              <h2 style="color:var(--accent-bright);margin-bottom:1rem;">Suite ForenSys</h2>
-              <p class="text-muted mb-1">Módulo avanzado de recolección de inteligencia, análisis forense digital y simulación balística.</p>
-              <button class="btn btn-secondary" onclick="navigateTo('suite')">Abrir Panel ForenSys</button>
-            </div>
+          </div>
+          <div style="display:flex; gap:0.5rem; margin-bottom:0.5rem;">
+            <button onclick="exportDB()" class="btn btn-secondary flex-1" style="font-size:0.7rem; padding: 0.5rem;" title="Exportar BD">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </button>
+            <button onclick="document.getElementById('import-db-input').click()" class="btn btn-secondary flex-1" style="font-size:0.7rem; padding: 0.5rem;" title="Importar BD">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </button>
+            <input type="file" id="import-db-input" style="display:none;" accept=".db" onchange="importDB(event)">
+          </div>
+          <button onclick="logout()" class="btn btn-danger btn-full" style="font-size:0.75rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Cerrar Sesión
+          </button>
+
+          <!-- Version -->
+          <div class="sidebar-version">
+            <span>FORENSYSLAB v2.0</span>
+            <span id="sidebar-build-date">BUILD 2026.07.30</span>
+          </div>
+
+          <!-- Decorative Fingerprint -->
+          <div class="sidebar-fingerprint">
+            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M50 15c-19.33 0-35 15.67-35 35s15.67 35 35 35 35-15.67 35-35-15.67-35-35-35z" opacity="0.3"/>
+              <path d="M50 22c-15.46 0-28 12.54-28 28s12.54 28 28 28 28-12.54 28-28-12.54-28-28-28z" opacity="0.25"/>
+              <path d="M50 29c-11.6 0-21 9.4-21 21s9.4 21 21 21 21-9.4 21-21-9.4-21-21-21z" opacity="0.2"/>
+              <path d="M50 36c-7.73 0-14 6.27-14 14s6.27 14 14 14 14-6.27 14-14-6.27-14-14-14z" opacity="0.15"/>
+              <path d="M50 43c-3.87 0-7 3.13-7 7s3.13 7 7 7 7-3.13 7-7-3.13-7-7-7z" opacity="0.1"/>
+              <path d="M35 50 C35 38 42 30 50 28" opacity="0.2" stroke-linecap="round"/>
+              <path d="M65 50 C65 62 58 70 50 72" opacity="0.2" stroke-linecap="round"/>
+            </svg>
           </div>
         </div>
-      </div>
 
-      <!-- SUSPECTS -->
-      <div id="view-suspects" class="view">
-        <div class="view-content" style="max-width:800px;">
-          <div class="page-header">
-            <div>
-              <h1>Base de Datos de Sujetos</h1>
-              <p>Gestión de sospechosos y registros biométricos</p>
-            </div>
-          </div>
+      </aside>
 
-          <div class="panel mb-2">
-            <h2 style="color:var(--accent-bright);font-size:0.875rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1rem;">Registrar Nuevo Sujeto</h2>
-            <form id="suspect-form" onsubmit="handleAddSuspect(event)">
-              <div class="grid-2 mb-1">
-                <input type="text" id="s-fname" class="input-field" placeholder="Nombres" required>
-                <input type="text" id="s-lname" class="input-field" placeholder="Apellidos" required>
-                <input type="text" id="s-id" class="input-field" placeholder="Cédula / Identificador Único" required>
-                <input type="text" id="s-behavior" class="input-field" placeholder="Conductas / Antecedentes (ej. hurto, homicidio)" required>
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="main-area">
+
+        <!-- ==================== DASHBOARD ==================== -->
+        <div id="view-dashboard" class="view active">
+          <div class="view-content">
+
+            <!-- BLOCK 1: AFIS — COTEJO DE HUELLA DACTILAR -->
+            <div class="dashboard-section">
+              <div class="section-header">
+                <div class="section-title">
+                  <div class="section-title-icon afis">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2"><path d="M12 10a2 2 0 1 0 0 4"/><path d="M12 6a6 6 0 0 0-6 6"/><path d="M18 12a6 6 0 0 0-6-6"/><path d="M12 2a10 10 0 0 0-10 10"/><path d="M22 12a10 10 0 0 0-10-10"/><path d="M2 12a10 10 0 0 0 10 10"/><path d="M12 22a10 10 0 0 0 10-10"/></svg>
+                  </div>
+                  <div>
+                    <h2>Cotejar Huella Dactilar</h2>
+                    <p>Sistema Avanzado de Identificación Biométrica (AFIS)</p>
+                  </div>
+                </div>
               </div>
 
-              <div style="border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin-bottom:1rem;">
-                <p class="text-muted mb-1" style="font-size:0.875rem;">Cámara de Fichaje (Foto Facial)</p>
-                <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
-                  <input type="file" id="s-photo" accept="image/*" style="display:none;">
-                  <button type="button" class="btn btn-secondary" onclick="document.getElementById('s-photo').click()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+              <div class="afis-grid">
+
+                <!-- Panel 1: Huella de Consulta -->
+                <div class="afis-panel">
+                  <div class="afis-panel-title">
+                    Huella de Consulta
+                  </div>
+                  <div class="fingerprint-preview" id="afis-query-preview">
+                    <svg viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="1.2">
+                      <ellipse cx="50" cy="60" rx="32" ry="42" opacity="0.15"/>
+                      <path d="M50 22 C30 22 24 40 24 60 C24 80 30 98 50 98" opacity="0.12" stroke-linecap="round"/>
+                      <path d="M50 22 C70 22 76 40 76 60 C76 80 70 98 50 98" opacity="0.12" stroke-linecap="round"/>
+                      <path d="M50 30 C35 30 30 45 30 60 C30 75 35 90 50 90" opacity="0.1" stroke-linecap="round"/>
+                      <path d="M50 30 C65 30 70 45 70 60 C70 75 65 90 50 90" opacity="0.1" stroke-linecap="round"/>
+                      <path d="M50 38 C40 38 36 50 36 60 C36 70 40 82 50 82" opacity="0.08" stroke-linecap="round"/>
+                      <path d="M50 38 C60 38 64 50 64 60 C64 70 60 82 50 82" opacity="0.08" stroke-linecap="round"/>
+                      <circle cx="50" cy="60" r="8" opacity="0.06"/>
                     </svg>
-                    Subir Foto
-                  </button>
-                  <button type="button" class="btn btn-secondary" onclick="openWebcamModal()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
-                      <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                  </div>
+                  <div class="quality-indicators" id="afis-query-quality">
+                    <div class="quality-badge">
+                      <span class="label">Calidad:</span>
+                      <span class="value" id="afis-query-quality-val">—</span>
+                    </div>
+                    <div class="quality-stars" id="afis-query-stars">
+                      <div class="quality-star empty"></div>
+                      <div class="quality-star empty"></div>
+                      <div class="quality-star empty"></div>
+                      <div class="quality-star empty"></div>
+                      <div class="quality-star empty"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel 2: Upload Zone -->
+                <div class="afis-panel">
+                  <div class="afis-upload-zone">
+                    <!-- Upload Methods -->
+                    <div class="upload-methods">
+                      <button class="upload-method-btn" onclick="document.getElementById('afis-file-input').click()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        Subir Imagen
+                      </button>
+                      <button class="upload-method-btn" disabled title="Próximamente">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6.01" y2="10"/><line x1="10" y1="10" x2="10.01" y2="10"/></svg>
+                        Escáner USB
+                      </button>
+                      <button class="upload-method-btn" disabled title="Próximamente">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10a2 2 0 1 0 0 4"/><path d="M18 12a6 6 0 0 0-6-6"/><path d="M12 2a10 10 0 0 0-10 10"/><path d="M22 12a10 10 0 0 0-10-10"/></svg>
+                        Lector Biométrico
+                      </button>
+                    </div>
+
+                    <!-- Dropzone -->
+                    <div class="dropzone-area" id="afis-dropzone" onclick="document.getElementById('afis-file-input').click()">
+                      <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 10a2 2 0 1 0 0 4"/><path d="M12 6a6 6 0 0 0-6 6"/><path d="M18 12a6 6 0 0 0-6-6"/><path d="M12 2a10 10 0 0 0-10 10"/><path d="M22 12a10 10 0 0 0-10-10"/><path d="M2 12a10 10 0 0 0 10 10"/><path d="M12 22a10 10 0 0 0 10-10"/>
+                      </svg>
+                      <div class="dropzone-text">Arrastra y suelta la huella</div>
+                      <div class="dropzone-hint">o haz click para seleccionar</div>
+                      <div class="dropzone-hint" style="margin-top:0.5rem;opacity:0.6;">.JPG, .PNG, .TIFF, .BMP, .WSQ</div>
+                      <input type="file" id="afis-file-input" style="display:none;" accept=".jpg,.jpeg,.png,.bmp,.tiff,.tif,.wsq,image/*" onchange="handleFingerprintUpload(event)">
+                    </div>
+
+                    <!-- Compare Button -->
+                    <button class="afis-compare-btn" id="afis-compare-btn" onclick="startComparison()" disabled>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      Iniciar Comparación
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Panel 3: Base de Datos / Huellas -->
+                <div class="afis-panel">
+                  <div class="afis-panel-title">
+                    Base de Datos / Huellas
+                  </div>
+                  <div class="fingerprint-preview" id="afis-db-preview">
+                    <svg viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="1.2">
+                      <ellipse cx="50" cy="60" rx="32" ry="42" opacity="0.15"/>
+                      <path d="M50 22 C30 22 24 40 24 60 C24 80 30 98 50 98" opacity="0.12" stroke-linecap="round"/>
+                      <path d="M50 22 C70 22 76 40 76 60 C76 80 70 98 50 98" opacity="0.12" stroke-linecap="round"/>
+                      <path d="M50 30 C35 30 30 45 30 60 C30 75 35 90 50 90" opacity="0.1" stroke-linecap="round"/>
+                      <path d="M50 30 C65 30 70 45 70 60 C70 75 65 90 50 90" opacity="0.1" stroke-linecap="round"/>
+                      <path d="M50 38 C40 38 36 50 36 60 C36 70 40 82 50 82" opacity="0.08" stroke-linecap="round"/>
+                      <path d="M50 38 C60 38 64 50 64 60 C64 70 60 82 50 82" opacity="0.08" stroke-linecap="round"/>
+                      <circle cx="50" cy="60" r="8" opacity="0.06"/>
                     </svg>
-                    Capturar con Cámara
+                  </div>
+                  <div class="quality-indicators" id="afis-db-quality">
+                    <div class="quality-badge">
+                      <span class="label">Calidad:</span>
+                      <span class="value" id="afis-db-quality-val">—</span>
+                    </div>
+                    <div class="quality-stars" id="afis-db-stars">
+                      <div class="quality-star empty"></div>
+                      <div class="quality-star empty"></div>
+                      <div class="quality-star empty"></div>
+                      <div class="quality-star empty"></div>
+                      <div class="quality-star empty"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Panel 4: Resultado Biométrico -->
+                <div class="afis-panel" id="afis-results-panel">
+                  <div class="afis-panel-title">
+                    Resultado de Coincidencia
+                    <div class="afis-live-badge" id="afis-live-badge" style="display:none;">
+                      <div class="afis-live-dot"></div>
+                      LIVE
+                    </div>
+                  </div>
+                  <div class="afis-results" id="afis-results">
+                    <div class="afis-result-header">
+                      <div>
+                        <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.25rem;">Coincidencia</div>
+                        <div class="afis-match-score" id="afis-score">—</div>
+                      </div>
+                    </div>
+                    <div class="afis-match-label" id="afis-confidence-label">Nivel de Confianza: <span id="afis-confidence">—</span></div>
+
+                    <div class="afis-result-row">
+                      <span class="afis-result-key">Minucias Coincidentes</span>
+                      <span class="afis-result-value highlight" id="afis-minutiae-match">—</span>
+                    </div>
+                    <div class="afis-result-row">
+                      <span class="afis-result-key">Minucias Descartadas</span>
+                      <span class="afis-result-value" id="afis-minutiae-disc">—</span>
+                    </div>
+                    <div class="afis-result-row">
+                      <span class="afis-result-key">Rotación</span>
+                      <span class="afis-result-value accent" id="afis-rotation">—</span>
+                    </div>
+                    <div class="afis-result-row">
+                      <span class="afis-result-key">Traslación</span>
+                      <span class="afis-result-value" id="afis-translation">—</span>
+                    </div>
+                    <div class="afis-result-row">
+                      <span class="afis-result-key">Escala</span>
+                      <span class="afis-result-value" id="afis-scale">—</span>
+                    </div>
+                    <div class="afis-result-row">
+                      <span class="afis-result-key">Calidad de Consulta</span>
+                      <span class="afis-result-value highlight" id="afis-q-quality">—</span>
+                    </div>
+                    <div class="afis-result-row">
+                      <span class="afis-result-key">Calidad de Coincidencia</span>
+                      <span class="afis-result-value highlight" id="afis-m-quality">—</span>
+                    </div>
+                    <div class="afis-result-row">
+                      <span class="afis-result-key">Tiempo de Proceso</span>
+                      <span class="afis-result-value accent" id="afis-time">—</span>
+                    </div>
+
+                    <button class="afis-detail-btn" id="afis-detail-btn" style="display:none;" onclick="alert('Análisis detallado disponible en próxima versión.')">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                      Ver Análisis Detallado
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- BLOCK 2: SUITE FORENSYS -->
+            <div class="dashboard-section">
+              <div class="section-header">
+                <div class="section-title">
+                  <div class="section-title-icon suite">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#3388ff" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                  </div>
+                  <div>
+                    <h2>Suite ForenSys</h2>
+                    <p>Módulos avanzados de investigación y análisis forense</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="suite-grid">
+
+                <!-- ForenSys Cyber & MetaInspect (ACTIVE) -->
+                <div class="suite-card active-module" onclick="navigateTo('cyber')">
+                  <div class="suite-card-icon cyber">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Cyber & MetaInspect</div>
+                  <div class="suite-card-desc">Análisis de Evidencia Digital e Inteligencia Artificial.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status active">
+                      <div class="suite-card-status-dot"></div>
+                      Activo
+                    </div>
+                    <button class="suite-card-btn open" onclick="navigateTo('cyber'); event.stopPropagation();">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys OSINT & NetTracker (ACTIVE) -->
+                <div class="suite-card active-module" onclick="navigateTo('osint')">
+                  <div class="suite-card-icon osint">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys OSINT & NetTracker</div>
+                  <div class="suite-card-desc">Ciberinteligencia e Investigación Digital.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status active">
+                      <div class="suite-card-status-dot"></div>
+                      Activo
+                    </div>
+                    <button class="suite-card-btn open" onclick="navigateTo('osint'); event.stopPropagation();">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys Mobile (DEV) -->
+                <div class="suite-card">
+                  <div class="suite-card-icon mobile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Mobile</div>
+                  <div class="suite-card-desc">Análisis de dispositivos móviles y extracciones forenses.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status dev">
+                      <div class="suite-card-status-dot"></div>
+                      En Desarrollo
+                    </div>
+                    <button class="suite-card-btn disabled">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys Image (DEV) -->
+                <div class="suite-card">
+                  <div class="suite-card-icon image">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Image</div>
+                  <div class="suite-card-desc">Análisis avanzado de imágenes y metadatos.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status dev">
+                      <div class="suite-card-status-dot"></div>
+                      En Desarrollo
+                    </div>
+                    <button class="suite-card-btn disabled">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys Disk (SOON) -->
+                <div class="suite-card">
+                  <div class="suite-card-icon disk">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Disk</div>
+                  <div class="suite-card-desc">Análisis de discos, particiones y recuperación de datos.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status soon">
+                      <div class="suite-card-status-dot"></div>
+                      Próximamente
+                    </div>
+                    <button class="suite-card-btn disabled">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys Video (DEV) -->
+                <div class="suite-card">
+                  <div class="suite-card-icon video">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Video</div>
+                  <div class="suite-card-desc">Análisis de videos, fotogramas y metadatos.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status dev">
+                      <div class="suite-card-status-dot"></div>
+                      En Desarrollo
+                    </div>
+                    <button class="suite-card-btn disabled">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys Network (SOON) -->
+                <div class="suite-card">
+                  <div class="suite-card-icon network">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Network</div>
+                  <div class="suite-card-desc">Captura y análisis de tráfico de red y comunicaciones.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status soon">
+                      <div class="suite-card-status-dot"></div>
+                      Próximamente
+                    </div>
+                    <button class="suite-card-btn disabled">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys Documents (DEV) -->
+                <div class="suite-card">
+                  <div class="suite-card-icon docs">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Documents</div>
+                  <div class="suite-card-desc">Análisis de documentos, metadatos y contenido oculto.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status dev">
+                      <div class="suite-card-status-dot"></div>
+                      En Desarrollo
+                    </div>
+                    <button class="suite-card-btn disabled">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys Memory (SOON) -->
+                <div class="suite-card">
+                  <div class="suite-card-icon memory">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Memory</div>
+                  <div class="suite-card-desc">Adquisición y análisis de memoria RAM.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status soon">
+                      <div class="suite-card-status-dot"></div>
+                      Próximamente
+                    </div>
+                    <button class="suite-card-btn disabled">ABRIR</button>
+                  </div>
+                </div>
+
+                <!-- ForenSys Malware (SOON) -->
+                <div class="suite-card">
+                  <div class="suite-card-icon malware">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  </div>
+                  <div class="suite-card-name">ForenSys Malware</div>
+                  <div class="suite-card-desc">Análisis de malware, archivos sospechosos y amenazas.</div>
+                  <div class="suite-card-footer">
+                    <div class="suite-card-status soon">
+                      <div class="suite-card-status-dot"></div>
+                      Próximamente
+                    </div>
+                    <button class="suite-card-btn disabled">ABRIR</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ==================== SUSPECTS ==================== -->
+        <div id="view-suspects" class="view">
+          <div class="view-content" style="max-width:800px;">
+            <div class="page-header">
+              <div>
+                <h1>Base de Datos de Sujetos</h1>
+                <p>Gestión de sospechosos y registros biométricos</p>
+              </div>
+            </div>
+
+            <div class="panel mb-2">
+              <h2 style="color:var(--accent-bright);font-size:0.875rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1rem;">Registrar Nuevo Sujeto</h2>
+              <form id="suspect-form" onsubmit="handleAddSuspect(event)">
+                <div class="grid-2 mb-1">
+                  <input type="text" id="s-fname" class="input-field" placeholder="Nombres" required>
+                  <input type="text" id="s-lname" class="input-field" placeholder="Apellidos" required>
+                  <input type="text" id="s-id" class="input-field" placeholder="Cédula / Identificador Único" required>
+                  <input type="text" id="s-behavior" class="input-field" placeholder="Conductas / Antecedentes (ej. hurto, homicidio)" required>
+                </div>
+
+                <div style="border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin-bottom:1rem;">
+                  <p class="text-muted mb-1" style="font-size:0.875rem;">Cámara de Fichaje (Foto Facial)</p>
+                  <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;">
+                    <input type="file" id="s-photo" accept="image/*" style="display:none;">
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('s-photo').click()">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+                      </svg>
+                      Subir Foto
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="openWebcamModal()">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
+                        <polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                      </svg>
+                      Capturar con Cámara
+                    </button>
+                  </div>
+                  <p id="s-photo-name" class="mt-1" style="color:var(--text);font-size:0.8rem;"></p>
+                </div>
+
+                <div style="border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin-bottom:1rem;">
+                  <p class="text-muted mb-1" style="font-size:0.875rem;">Huellero USB Digital (Simulado)</p>
+                  <input type="file" id="s-fingerprint" accept="image/*" style="display:none;">
+                  <button type="button" class="btn btn-secondary" onclick="document.getElementById('s-fingerprint').click()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    Subir Captura de Huella
                   </button>
                 </div>
-                <p id="s-photo-name" class="mt-1" style="color:var(--text);font-size:0.8rem;"></p>
-              </div>
 
-              <div style="border:1px dashed var(--border);border-radius:8px;padding:1rem;text-align:center;margin-bottom:1rem;">
-                <p class="text-muted mb-1" style="font-size:0.875rem;">Huellero USB Digital (Simulado)</p>
-                <input type="file" id="s-fingerprint" accept="image/*" style="display:none;">
-                <button type="button" class="btn btn-secondary" onclick="document.getElementById('s-fingerprint').click()">
+                <button type="submit" class="btn btn-primary btn-full btn-lg">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
                   </svg>
-                  Subir Captura de Huella
+                  Registrar Sujeto en Base de Datos
                 </button>
+              </form>
+            </div>
+
+            <div class="panel">
+              <h2 style="color:var(--accent-bright);font-size:0.875rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1rem;">Registros Recientes</h2>
+              <div id="suspects-list" style="min-height:100px;">
+                Cargando...
               </div>
-
-              <button type="submit" class="btn btn-primary btn-full btn-lg">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;">
-                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
-                </svg>
-                Registrar Sujeto en Base de Datos
-              </button>
-            </form>
-          </div>
-
-          <div class="panel">
-            <h2 style="color:var(--accent-bright);font-size:0.875rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1rem;">Registros Recientes</h2>
-            <div id="suspects-list" style="min-height:100px;">
-              Cargando...
             </div>
           </div>
         </div>
-      </div>
 
-
-
-      <!-- SUITE FORENSYS -->
-      <div id="view-suite" class="view">
-        <div class="view-content" style="max-width:1200px;">
-          <div class="page-header">
-            <div>
-              <h1>Suite ForenSys</h1>
-              <p>Herramientas avanzadas de recolección de inteligencia, análisis forense digital y simulación.</p>
+        <!-- ==================== SUITE FORENSYS (STANDALONE PAGE) ==================== -->
+        <div id="view-suite" class="view">
+          <div class="view-content" style="max-width:1200px;">
+            <div class="page-header">
+              <div>
+                <h1>Suite ForenSys</h1>
+                <p>Herramientas avanzadas de recolección de inteligencia, análisis forense digital y simulación.</p>
+              </div>
             </div>
-          </div>
-          <div class="dash-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem;">
-            
-            <div class="panel" style="padding:1rem;">
-              <img src="images/forensys_mobile.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Mobile / Cloud">
-              <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Mobile / Cloud</h3>
-              <p class="text-muted" style="font-size:0.9rem;">Identificación Biométrica Instantánea en Campo.</p>
-            </div>
+            <div class="dash-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem;">
 
-            <div class="panel" style="padding:1rem; cursor:pointer;" onclick="navigateTo('cyber')">
-              <img src="images/forensys_cyber.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Cyber & MetaInspect">
-              <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Cyber & MetaInspect</h3>
-              <p class="text-muted" style="font-size:0.9rem;">Análisis de Evidencia Digital e Inteligencia Artificial.</p>
-              <button class="btn btn-primary btn-full mt-2" onclick="navigateTo('cyber'); event.stopPropagation();">Abrir Módulo</button>
-            </div>
+              <div class="panel" style="padding:1rem;">
+                <img src="images/forensys_mobile.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Mobile / Cloud">
+                <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Mobile / Cloud</h3>
+                <p class="text-muted" style="font-size:0.9rem;">Identificación Biométrica Instantánea en Campo.</p>
+              </div>
 
-            <div class="panel" style="padding:1rem;">
-              <img src="images/forensys_ballistics.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Ballistics 3D">
-              <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Ballistics 3D</h3>
-              <p class="text-muted" style="font-size:0.9rem;">Simulación y Trayectoria de Proyectiles.</p>
-            </div>
+              <div class="panel" style="padding:1rem; cursor:pointer;" onclick="navigateTo('cyber')">
+                <img src="images/forensys_cyber.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Cyber & MetaInspect">
+                <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Cyber & MetaInspect</h3>
+                <p class="text-muted" style="font-size:0.9rem;">Análisis de Evidencia Digital e Inteligencia Artificial.</p>
+                <button class="btn btn-primary btn-full mt-2" onclick="navigateTo('cyber'); event.stopPropagation();">Abrir Módulo</button>
+              </div>
 
-            <div class="panel" style="padding:1rem; cursor:pointer;" onclick="navigateTo('osint')">
-              <img src="images/forensys_osint.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys OSINT & NetTracker">
-              <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys OSINT & NetTracker</h3>
-              <p class="text-muted" style="font-size:0.9rem;">Ciberinteligencia e Investigación Digital.</p>
-              <button class="btn btn-primary btn-full mt-2" onclick="navigateTo('osint'); event.stopPropagation();">Abrir Módulo</button>
-            </div>
+              <div class="panel" style="padding:1rem;">
+                <img src="images/forensys_ballistics.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Ballistics 3D">
+                <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Ballistics 3D</h3>
+                <p class="text-muted" style="font-size:0.9rem;">Simulación y Trayectoria de Proyectiles.</p>
+              </div>
 
+              <div class="panel" style="padding:1rem; cursor:pointer;" onclick="navigateTo('osint')">
+                <img src="images/forensys_osint.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys OSINT & NetTracker">
+                <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys OSINT & NetTracker</h3>
+                <p class="text-muted" style="font-size:0.9rem;">Ciberinteligencia e Investigación Digital.</p>
+                <button class="btn btn-primary btn-full mt-2" onclick="navigateTo('osint'); event.stopPropagation();">Abrir Módulo</button>
+              </div>
+
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- CYBER & METAINSPECT -->
-      <div id="view-cyber" class="view">
-        <div class="view-content" style="max-width:900px;">
-          <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
-            <div>
-              <h1 style="color:#a855f7;">ForenSys Cyber & MetaInspect</h1>
-              <p>Extracción de metadatos EXIF, GPS e información profunda de archivos.</p>
-            </div>
-            <button class="btn btn-secondary" onclick="navigateTo('suite')">Volver a Suite</button>
-          </div>
-
-          <div class="dash-grid">
-            <div class="panel" style="grid-column: 1 / -1;">
-              <h2 style="color:var(--text);margin-bottom:1rem;">Análisis de Archivo</h2>
-              <p class="text-muted mb-2">Sube una fotografía (JPEG, PNG, HEIC) o un documento para extraer sus datos ocultos.</p>
-              
-              <div style="border: 2px dashed var(--border); border-radius: 12px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: 0.3s;" id="cyber-dropzone" onclick="document.getElementById('cyber-file').click()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px; margin-bottom:1rem; color:var(--text-muted);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                <p style="color:var(--text); font-weight:500; font-size:1.1rem;">Haz clic o arrastra un archivo aquí</p>
-                <p class="text-muted" style="font-size:0.9rem;">Formatos soportados: JPG, PNG, TIFF, HEIC, MP4</p>
-                <input type="file" id="cyber-file" style="display:none;" onchange="analyzeCyberFile(event)">
+        <!-- ==================== CYBER & METAINSPECT ==================== -->
+        <div id="view-cyber" class="view">
+          <div class="view-content" style="max-width:900px;">
+            <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <h1 style="color:#a855f7;">ForenSys Cyber & MetaInspect</h1>
+                <p>Extracción de metadatos EXIF, GPS e información profunda de archivos.</p>
               </div>
-
-              <div id="cyber-loading" class="hidden" style="text-align:center; padding:2rem 0;">
-                <p style="color:var(--accent-bright); font-weight:600; font-size:1.2rem;">Analizando huellas digitales del archivo...</p>
-              </div>
+              <button class="btn btn-secondary" onclick="navigateTo('dashboard')">Volver al Dashboard</button>
             </div>
 
-            <div class="panel" id="cyber-results-panel" style="grid-column: 1 / -1; display:none;">
-              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:0.5rem; margin-bottom:1rem;">
-                <h3 style="color:#10b981; margin:0; font-size:1.2rem;">Resultados de MetaInspect</h3>
-                <div>
-                  <button class="btn btn-secondary" onclick="resetCyber()">Analizar Otra Foto</button>
-                  <button class="btn btn-primary" onclick="exportCyber()">Exportar Informe</button>
+            <div class="dash-grid">
+              <div class="panel" style="grid-column: 1 / -1;">
+                <h2 style="color:var(--text);margin-bottom:1rem;">Análisis de Archivo</h2>
+                <p class="text-muted mb-2">Sube una fotografía (JPEG, PNG, HEIC) o un documento para extraer sus datos ocultos.</p>
+
+                <div style="border: 2px dashed var(--border); border-radius: 12px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: 0.3s;" id="cyber-dropzone" onclick="document.getElementById('cyber-file').click()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:48px;height:48px; margin-bottom:1rem; color:var(--text-secondary);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <p style="color:var(--text); font-weight:500; font-size:1.1rem;">Haz clic o arrastra un archivo aquí</p>
+                  <p class="text-muted" style="font-size:0.9rem;">Formatos soportados: JPG, PNG, TIFF, HEIC, MP4</p>
+                  <input type="file" id="cyber-file" style="display:none;" onchange="analyzeCyberFile(event)">
                 </div>
-              </div>
-              
-              <div class="dash-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:1rem;">
-                <div>
-                  <h4 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Integridad y Archivo</h4>
-                  <ul style="list-style:none; padding:0; font-size:0.9rem;" id="cyber-basic-info"></ul>
-                  
-                  <h4 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-top:1rem; margin-bottom:0.5rem;">Hardware y Captura</h4>
-                  <ul style="list-style:none; padding:0; font-size:0.9rem;" id="cyber-hardware-info"></ul>
-                </div>
-                <div>
-                  <h4 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Geolocalización Forense</h4>
-                  <div id="cyber-gps-info"></div>
+
+                <div id="cyber-loading" class="hidden" style="text-align:center; padding:2rem 0;">
+                  <p style="color:var(--accent-bright); font-weight:600; font-size:1.2rem;">Analizando huellas digitales del archivo...</p>
                 </div>
               </div>
 
-              <h4 style="color:var(--text-muted); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Datos EXIF Completos</h4>
-              <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:8px; padding:1rem; max-height:400px; overflow-y:auto;">
-                <table style="width:100%; text-align:left; border-collapse:collapse; font-size:0.9rem;" id="cyber-exif-table">
-                  <thead>
-                    <tr style="border-bottom:1px solid var(--border); color:var(--accent-bright);">
-                      <th style="padding:0.5rem 0;">Etiqueta EXIF</th>
-                      <th style="padding:0.5rem 0;">Valor Detectado</th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-              </div>
-            </div>
+              <div class="panel" id="cyber-results-panel" style="grid-column: 1 / -1; display:none;">
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:0.5rem; margin-bottom:1rem;">
+                  <h3 style="color:#10b981; margin:0; font-size:1.2rem;">Resultados de MetaInspect</h3>
+                  <div>
+                    <button class="btn btn-secondary" onclick="resetCyber()">Analizar Otra Foto</button>
+                    <button class="btn btn-primary" onclick="exportCyber()">Exportar Informe</button>
+                  </div>
+                </div>
 
-          </div>
-        </div>
-      </div>
+                <div class="dash-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:1rem;">
+                  <div>
+                    <h4 style="color:var(--text-secondary); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Integridad y Archivo</h4>
+                    <ul style="list-style:none; padding:0; font-size:0.9rem;" id="cyber-basic-info"></ul>
 
-      <!-- OSINT & NETTRACKER -->
-      <div id="view-osint" class="view">
-        <div class="view-content" style="max-width:1200px;">
-          <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
-            <div>
-              <h1 style="color:#ef4444;">ForenSys OSINT & NetTracker</h1>
-              <p>Correlación de identidades digitales y mapeo de redes (Basado en Sherlock / Maltego).</p>
-            </div>
-            <button class="btn btn-secondary" onclick="navigateTo('suite')">Volver a Suite</button>
-          </div>
+                    <h4 style="color:var(--text-secondary); font-size:0.9rem; text-transform:uppercase; margin-top:1rem; margin-bottom:0.5rem;">Hardware y Captura</h4>
+                    <ul style="list-style:none; padding:0; font-size:0.9rem;" id="cyber-hardware-info"></ul>
+                  </div>
+                  <div>
+                    <h4 style="color:var(--text-secondary); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Geolocalización Forense</h4>
+                    <div id="cyber-gps-info"></div>
+                  </div>
+                </div>
 
-          <div class="dash-grid" style="grid-template-columns: 300px 1fr; align-items:start;">
-            
-            <!-- Panel Izquierdo: Buscador y Detalles -->
-            <div style="display:flex; flex-direction:column; gap:1rem;">
-              <div class="panel">
-                <h2 style="color:var(--text); font-size:1.1rem; margin-bottom:1rem;">Analizar Objetivo</h2>
-                <form id="osint-form" onsubmit="runOSINT(event)">
-                  <input type="text" id="osint-query" class="input-field mb-1" placeholder="Ej: johndoe, johndoe@gmail.com, 192.168.1.1" required>
-                  <button type="submit" class="btn btn-primary btn-full" id="osint-btn">Iniciar Rastreo</button>
-                </form>
-              </div>
-
-              <div class="panel" id="osint-details-panel" style="display:none; flex:1;">
-                <h3 style="color:var(--accent-bright); font-size:1rem; margin-bottom:0.5rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem;">Detalles del Nodo</h3>
-                <div id="osint-node-details" style="font-size:0.9rem; word-break:break-all;">
-                  Selecciona un nodo en el grafo para ver detalles.
+                <h4 style="color:var(--text-secondary); font-size:0.9rem; text-transform:uppercase; margin-bottom:0.5rem;">Datos EXIF Completos</h4>
+                <div style="background:rgba(0,0,0,0.3); border:1px solid var(--border); border-radius:8px; padding:1rem; max-height:400px; overflow-y:auto;">
+                  <table style="width:100%; text-align:left; border-collapse:collapse; font-size:0.9rem;" id="cyber-exif-table">
+                    <thead>
+                      <tr style="border-bottom:1px solid var(--border); color:var(--accent-bright);">
+                        <th style="padding:0.5rem 0;">Etiqueta EXIF</th>
+                        <th style="padding:0.5rem 0;">Valor Detectado</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
                 </div>
               </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== OSINT & NETTRACKER ==================== -->
+        <div id="view-osint" class="view">
+          <div class="view-content" style="max-width:1200px;">
+            <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <h1 style="color:#ef4444;">ForenSys OSINT & NetTracker</h1>
+                <p>Correlación de identidades digitales y mapeo de redes (Basado en Sherlock / Maltego).</p>
+              </div>
+              <button class="btn btn-secondary" onclick="navigateTo('dashboard')">Volver al Dashboard</button>
             </div>
 
-            <!-- Panel Derecho: Consola Sherlock -->
-            <div class="panel" style="padding:0; overflow:hidden; position:relative; min-height:500px; display:flex; flex-direction:column; background:#0c0c0c;">
-              <div style="padding:1rem; background:#1e1e1e; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center; z-index:10;">
-                <h3 style="margin:0; font-size:1rem; color:#4ade80; font-family:monospace;">Sherlock Console Output</h3>
+            <div class="dash-grid" style="grid-template-columns: 300px 1fr; align-items:start;">
+
+              <!-- Panel Izquierdo: Buscador y Detalles -->
+              <div style="display:flex; flex-direction:column; gap:1rem;">
+                <div class="panel">
+                  <h2 style="color:var(--text); font-size:1.1rem; margin-bottom:1rem;">Analizar Objetivo</h2>
+                  <form id="osint-form" onsubmit="runOSINT(event)">
+                    <input type="text" id="osint-query" class="input-field mb-1" placeholder="Ej: johndoe, johndoe@gmail.com, 192.168.1.1" required>
+                    <button type="submit" class="btn btn-primary btn-full" id="osint-btn">Iniciar Rastreo</button>
+                  </form>
+                </div>
+
+                <div class="panel" id="osint-details-panel" style="display:none; flex:1;">
+                  <h3 style="color:var(--accent-bright); font-size:1rem; margin-bottom:0.5rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem;">Detalles del Nodo</h3>
+                  <div id="osint-node-details" style="font-size:0.9rem; word-break:break-all;">
+                    Selecciona un nodo en el grafo para ver detalles.
+                  </div>
+                </div>
               </div>
-              
-              <div id="osint-console" style="flex:1; width:100%; height:100%; background:#0c0c0c; color:#4ade80; font-family:Consolas, monospace; font-size:0.9rem; padding:1rem; overflow-y:auto; line-height:1.4;">
-                <div style="color:#666;">Esperando ejecución de comando...</div>
+
+              <!-- Panel Derecho: Consola Sherlock -->
+              <div class="panel" style="padding:0; overflow:hidden; position:relative; min-height:500px; display:flex; flex-direction:column; background:#0c0c0c;">
+                <div style="padding:1rem; background:#1e1e1e; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center; z-index:10;">
+                  <h3 style="margin:0; font-size:1rem; color:#4ade80; font-family:monospace;">Sherlock Console Output</h3>
+                </div>
+
+                <div id="osint-console" style="flex:1; width:100%; height:100%; background:#0c0c0c; color:#4ade80; font-family:Consolas, monospace; font-size:0.9rem; padding:1rem; overflow-y:auto; line-height:1.4;">
+                  <div style="color:#666;">Esperando ejecución de comando...</div>
+                </div>
+
+                <div id="osint-loading" class="hidden" style="position:absolute; inset:0; background:rgba(12,12,12,0.6); display:flex; align-items:center; justify-content:center; z-index:20; pointer-events:none;">
+                  <p style="color:#4ade80; font-weight:600; font-size:1.2rem; animation: pulse 1s infinite; font-family:monospace;">Ejecutando Sherlock...</p>
+                </div>
               </div>
-              
-              <div id="osint-loading" class="hidden" style="position:absolute; inset:0; background:rgba(12,12,12,0.6); display:flex; align-items:center; justify-content:center; z-index:20; pointer-events:none;">
-                <p style="color:#4ade80; font-weight:600; font-size:1.2rem; animation: pulse 1s infinite; font-family:monospace;">Ejecutando Sherlock...</p>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== ABOUT ==================== -->
+        <div id="view-about" class="view">
+          <div class="view-content" style="max-width:750px;">
+            <div class="page-header">
+              <div>
+                <h1>Acerca del Proyecto</h1>
+                <p>ForensysLab v2.0 — Laboratorio Forense Digital</p>
               </div>
             </div>
 
+            <div class="panel text-center mb-2">
+              <p class="text-muted" style="margin-bottom:2rem;line-height:1.7;">
+                <strong style="color:var(--text);">ForensysLab v2.0</strong> es un sistema de inteligencia forense digital desarrollado como proyecto de grado. Integra análisis dactilar, un motor de predicción estadística de conductas delictivas, gestión de base de datos de sospechosos e IA.
+              </p>
+
+              <div style="border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:2rem;background:rgba(0,102,255,0.03);">
+                <h3 style="color:var(--accent-bright);margin-bottom:1rem;font-size:1rem;">Desarrollador</h3>
+                <p style="font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;">Andrés González</p>
+                <p class="text-muted" style="font-size:0.875rem;margin-bottom:1.5rem;">Desarrollador de Software | Fullstack Junior</p>
+                <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
+                  <a href="https://github.com/AndresGonzalezDev444" target="_blank" rel="noopener" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+                  </a>
+                  <a href="https://andresgonzalezdev.me" target="_blank" rel="noopener" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    Portfolio Web
+                  </a>
+                  <a href="https://www.linkedin.com/in/andres-gonzalez444" target="_blank" rel="noopener" class="btn btn-secondary">
+                    <svg viewBox="0 0 24 24" fill="#0A66C2" style="width:16px;height:16px;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+
+              <div class="about-tech-grid">
+                <div class="about-tech-item">
+                  <h4>Tecnologías</h4>
+                  <ul>
+                    <li>Python 3 + FastAPI</li>
+                    <li>OpenCV + LBPH Facial Recognition</li>
+                    <li>SQLAlchemy + SQLite</li>
+                    <li>Scikit-learn (Predicción)</li>
+                    <li>HTML5 / CSS3 / JavaScript</li>
+                  </ul>
+                </div>
+                <div class="about-tech-item">
+                  <h4>Funcionalidades</h4>
+                  <ul>
+                    <li>Reconocimiento facial en vivo</li>
+                    <li>Gestión CRUD de sospechosos</li>
+                    <li>Captura de foto con webcam</li>
+                    <li>Algoritmo predictivo forense</li>
+                    <li>Autenticación con roles</li>
+                  </ul>
+                </div>
+              </div>
+
+              <p style="color:rgba(255,255,255,0.15);font-size:0.75rem;margin-top:2rem;">v2.0 — 2026 — Cestelco</p>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- ===== FOOTER BAR ===== -->
+    <footer class="app-footer">
+      <div class="footer-indicators">
+        <div class="footer-item">
+          <span class="footer-item-label">Casos Activos:</span>
+          <span class="footer-item-value cyan" id="footer-cases">5</span>
+        </div>
+        <div class="footer-item">
+          <span class="footer-item-label">Evidencias:</span>
+          <span class="footer-item-value" id="footer-evidence">1,248</span>
+        </div>
+        <div class="footer-item">
+          <span class="footer-item-label">Análisis Hoy:</span>
+          <span class="footer-item-value" id="footer-analysis">23</span>
+        </div>
+        <div class="footer-item">
+          <span class="footer-item-label">Almacenamiento:</span>
+          <span class="footer-item-value" id="footer-storage-text">2.4 TB / 10 TB</span>
+          <div class="footer-storage-bar">
+            <div class="footer-storage-fill" id="footer-storage-bar" style="width:24%;"></div>
           </div>
         </div>
       </div>
-
-      <!-- ABOUT -->
-      <div id="view-about" class="view">
-        <div class="view-content" style="max-width:750px;">
-          <div class="page-header">
-            <div>
-              <h1>Acerca del Proyecto</h1>
-              <p>ForenSys Lab V1 — Laboratorio Forense Digital</p>
-            </div>
-          </div>
-
-          <div class="panel text-center mb-2">
-            <p class="text-muted" style="margin-bottom:2rem;line-height:1.7;">
-              <strong style="color:var(--text);">ForenSys Lab V1</strong> es un sistema de inteligencia forense digital desarrollado como proyecto de grado. Integra análisis dactilar, un motor de predicción estadística de conductas delictivas, gestión de base de datos de sospechosos e IA.
-            </p>
-
-            <div style="border:1px solid var(--border);border-radius:12px;padding:2rem;margin-bottom:2rem;background:rgba(37,99,235,0.03);">
-              <h3 style="color:var(--accent-bright);margin-bottom:1rem;font-size:1rem;">Desarrollador</h3>
-              <p style="font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.5rem;">Andrés González</p>
-              <p class="text-muted" style="font-size:0.875rem;margin-bottom:1.5rem;">Desarrollador de Software | Fullstack Junior</p>
-              <div style="display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;">
-                <a href="https://github.com/AndresGonzalezDev444" target="_blank" rel="noopener" class="btn btn-secondary">
-                  <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                  GitHub
-                </a>
-                <a href="https://andresgonzalezdev.netlify.app/" target="_blank" rel="noopener" class="btn btn-secondary">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-                  Portfolio Web
-                </a>
-                <a href="https://www.linkedin.com/in/andres-gonzalez444" target="_blank" rel="noopener" class="btn btn-secondary">
-                  <svg viewBox="0 0 24 24" fill="#0A66C2" style="width:16px;height:16px;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  LinkedIn
-                </a>
-              </div>
-            </div>
-
-            <div class="about-tech-grid">
-              <div class="about-tech-item">
-                <h4>Tecnologías</h4>
-                <ul>
-                  <li>Python 3 + FastAPI</li>
-                  <li>OpenCV + LBPH Facial Recognition</li>
-                  <li>SQLAlchemy + SQLite</li>
-                  <li>Scikit-learn (Predicción)</li>
-                  <li>HTML5 / CSS3 / JavaScript</li>
-                </ul>
-              </div>
-              <div class="about-tech-item">
-                <h4>Funcionalidades</h4>
-                <ul>
-                  <li>Reconocimiento facial en vivo</li>
-                  <li>Gestión CRUD de sospechosos</li>
-                  <li>Captura de foto con webcam</li>
-                  <li>Algoritmo predictivo forense</li>
-                  <li>Autenticación con roles</li>
-                </ul>
-              </div>
-            </div>
-
-            <p style="color:rgba(255,255,255,0.15);font-size:0.75rem;margin-top:2rem;">v1.0 — 2026 — Cestelco</p>
-          </div>
+      <div class="footer-right">
+        <div class="footer-item">
+          <span class="footer-item-label">Sistema Operativo:</span>
+          <span class="footer-item-value">ForensysLab OS v2.0</span>
+        </div>
+        <div class="footer-system-status">
+          <span class="footer-item-label">Estado:</span>
+          <span class="footer-item-value green">ÓPTIMO</span>
+          <div class="footer-status-dot"></div>
         </div>
       </div>
+    </footer>
 
-    </main>
   </div>
 
   <!-- ===== WEBCAM MODAL ===== -->
@@ -512,6 +1005,7 @@
       <button class="btn btn-danger" onclick="closeWebcamModal()">Cancelar</button>
     </div>
   </div>
+
   <!-- Scripts -->
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <script src="js/app.js"></script>
