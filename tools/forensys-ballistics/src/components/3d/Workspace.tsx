@@ -1,4 +1,4 @@
-// src/components/3d/Workspace.tsx (Fase 3: + TransformControls)
+// src/components/3d/Workspace.tsx (Fase 4: + renderizado dinámico de impactos)
 import { useState, useCallback } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Grid, OrbitControls, GizmoHelper, GizmoViewport } from '@react-three/drei';
@@ -7,6 +7,7 @@ import { ParametricWall } from './ParametricWall';
 import { TrajectoryObject } from './TrajectoryObject';
 import { AnatomicalManikin } from './AnatomicalManikin';
 import { MeasurementRenderer } from './MeasurementRenderer';
+import { ImpactMarkerRenderer } from './ImpactMarkerRenderer';
 import { TransformableObject } from './TransformableObject';
 import type { ThreeEvent } from '@react-three/fiber';
 
@@ -97,6 +98,13 @@ export function Workspace() {
             }
           })}
         </group>
+
+        {/* Renderizado dinámico de impactos en espacio mundial */}
+        {Object.values(objects).map((obj) =>
+          obj.impacts?.map((impact) => (
+            <ImpactMarkerRenderer key={impact.id} impact={impact} targetObject={obj} />
+          ))
+        )}
 
         <MeasurementRenderer />
 

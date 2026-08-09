@@ -1,19 +1,30 @@
-// src/components/layout/BottomPanel.tsx (Actualizado para integrar la pestaña de Resultados y Trayectorias)
 import { useState } from 'react';
 import { useSceneStore } from '../../store/useSceneStore';
 import { ResultsPanelTab } from './ResultsPanelTab';
 
 export function BottomPanel() {
-  const [activeTab, setActiveTab] = useState('Datos');
+  const [activeTab, setActiveTab] = useState('Resultados');
+  const [newObs, setNewObs] = useState('');
+  
   const measurements = useSceneStore((state) => state.measurements);
   const isMeasuring = useSceneStore((state) => state.isMeasuring);
   const toggleMeasureMode = useSceneStore((state) => state.toggleMeasureMode);
   const clearMeasurements = useSceneStore((state) => state.clearMeasurements);
+  const objects = useSceneStore((state) => state.objects);
+  const observations = useSceneStore((state) => state.observations);
+  const addObservation = useSceneStore((state) => state.addObservation);
 
-  const tabs = ['Datos', 'Observaciones', 'Resultados', 'Mediciones', 'Trayectorias'];
+  const tabs = ['Datos', 'Observaciones', 'Resultados', 'Mediciones'];
+
+  const handleAddObs = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && newObs.trim()) {
+      addObservation(newObs.trim());
+      setNewObs('');
+    }
+  };
 
   return (
-    <footer className="h-48 bg-[#141414] border-t border-[#333] flex flex-col shrink-0">
+    <footer className="h-56 bg-[#141414] border-t border-[#333] flex flex-col shrink-0">
       <div className="flex items-center justify-between border-b border-[#333] bg-[#1a1a1a] px-2">
         <div className="flex">
           {tabs.map((tab) => (
@@ -50,10 +61,59 @@ export function BottomPanel() {
       </div>
 
       <div className="flex-1 overflow-y-auto bg-[#0a0a0a]">
-        {activeTab === 'Mediciones' ? (
+        {activeTab === 'Datos' && (
+          <div className="p-3 text-xs">
+            <table className="w-full text-left border-collapse font-mono">
+              <thead>
+                <tr className="border-b border-[#333] text-gray-500">
+                  <th className="p-2">ID</th>
+                  <th className="p-2">Nombre</th>
+                  <th className="p-2">Capa</th>
+                  <th className="p-2">Posición (X,Y,Z)</th>
+                  <th className="p-2">Vis.</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.values(objects).map(obj => (
+                  <tr key={obj.id} className="border-b border-[#1a1a1a] text-gray-300 hover:bg-[#141414]">
+                    <td className="p-2 text-blue-400">{obj.id}</td>
+                    <td className="p-2">{obj.name}</td>
+                    <td className="p-2">{obj.layer}</td>
+                    <td className="p-2">[{obj.position.map(n => n.toFixed(2)).join(', ')}]</td>
+                    <td className="p-2">{obj.visible ? '👁' : '🕶'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {activeTab === 'Observaciones' && (
+          <div className="flex flex-col h-full p-3 text-xs">
+            <div className="flex-1 overflow-y-auto mb-2 space-y-1">
+              {observations.length === 0 ? (
+                <div className="text-gray-500 italic">No hay observaciones registradas en este caso.</div>
+              ) : (
+                observations.map((obs, i) => (
+                  <div key={i} className="text-green-400 font-mono">{obs}</div>
+                ))
+              )}
+            </div>
+            <input
+              type="text"
+              value={newObs}
+              onChange={(e) => setNewObs(e.target.value)}
+              onKeyDown={handleAddObs}
+              placeholder="Escriba una observación y presione Enter..."
+              className="w-full bg-[#1e1e1e] border border-[#333] text-xs text-white p-2 rounded focus:outline-none focus:border-[#4a90e2] font-mono"
+            />
+          </div>
+        )}
+
+        {activeTab === 'Mediciones' && (
           <div className="p-3 text-xs">
             {measurements.length === 0 ? (
-              <div className="text-gray-500 italic">No hay mediciones registradas. Haga clic en "+ Nueva Medición" para seleccionar puntos en el espacio 3D.</div>
+              <div className="text-gray-500 italic">No hay mediciones registradas. Haga clic en "+ Nueva Medición" para seleccionar puntos.</div>
             ) : (
               <table className="w-full text-left border-collapse font-mono">
                 <thead>
@@ -63,7 +123,6 @@ export function BottomPanel() {
                     <th className="p-2">ΔX</th>
                     <th className="p-2">ΔY</th>
                     <th className="p-2">ΔZ</th>
-                    <th className="p-2">Ángulo Horiz.</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -74,20 +133,15 @@ export function BottomPanel() {
                       <td className="p-2">{m.deltaX}</td>
                       <td className="p-2">{m.deltaY}</td>
                       <td className="p-2">{m.deltaZ}</td>
-                      <td className="p-2">{m.horizontalAngle}°</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             )}
           </div>
-        ) : activeTab === 'Resultados' || activeTab === 'Trayectorias' ? (
-          <ResultsPanelTab />
-        ) : (
-          <div className="p-3 text-xs text-green-500 font-mono">
-            [SISTEMA] Pestaña [{activeTab}] activa. Módulo pericial operando con precisión métrica estándar.
-          </div>
         )}
+
+        {activeTab === 'Resultados' && <ResultsPanelTab />}
       </div>
     </footer>
   );

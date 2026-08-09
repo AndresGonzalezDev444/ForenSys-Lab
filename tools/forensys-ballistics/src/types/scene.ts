@@ -1,4 +1,6 @@
-// src/types/scene.ts
+// src/types/scene.ts (Fase 4: + ImpactData)
+import type { ImpactData } from '../core/math/impactCalculator';
+
 export type ObjectType = 'parametric_wall' | 'model' | 'trajectory' | 'measurement' | 'manikin';
 
 export interface SceneObject {
@@ -11,5 +13,6 @@ export interface SceneObject {
   scale: [number, number, number];
   visible: boolean;
   locked: boolean;
-  properties: Record<string, any>;
+  properties: Record<string, unknown>;
+  impacts?: ImpactData[];
 }

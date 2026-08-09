@@ -8,7 +8,10 @@ interface Props {
 }
 
 export function ParametricWall({ objectData, isSelected }: Props) {
-  const { length, height, thickness, color } = objectData.properties;
+  const length = (objectData.properties.length as number) ?? 2;
+  const height = (objectData.properties.height as number) ?? 2;
+  const thickness = (objectData.properties.thickness as number) ?? 0.1;
+  const color = (objectData.properties.color as string) ?? '#888888';
 
   const geometry = useMemo(() => {
     const geo = new THREE.BoxGeometry(length, height, thickness);

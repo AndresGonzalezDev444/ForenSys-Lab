@@ -7,13 +7,11 @@ interface Props {
 }
 
 export function AnatomicalManikin({ objectData, isSelected }: Props) {
-  const {
-    height = 1.75,
-    showSagittal = false,
-    showCoronal = false,
-    showTransverse = false,
-    color = '#8e8e93',
-  } = objectData.properties;
+  const height = (objectData.properties.height as number) ?? 1.75;
+  const showSagittal = Boolean(objectData.properties.showSagittal);
+  const showCoronal = Boolean(objectData.properties.showCoronal);
+  const showTransverse = Boolean(objectData.properties.showTransverse);
+  const color = (objectData.properties.color as string) ?? '#8e8e93';
 
   const scaleY = height / 1.75;
 
