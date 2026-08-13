@@ -1,0 +1,22 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "wendysophia0943",
+    "total_found": 3,
+    "findings": [
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@wendysophia0943",
+            "status": "Found"
+        },
+        {
+            "platform": "Pinterest",
+            "url": "https://www.pinterest.com/wendysophia0943/",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/wendysophia0943",
+            "status": "Found"
+        }
+    ]
+}
