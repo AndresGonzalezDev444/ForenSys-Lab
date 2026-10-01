@@ -1,7 +1,7 @@
 # 🔬 ForenSys Lab
 
 <p align="center">
-  <img src="forensys-lab.png" alt="ForenSys Lab" width="420">
+  <img src="Forensys-lab.png" alt="ForenSys Lab" width="420">
 </p>
 
 <p align="center">
