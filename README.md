@@ -101,7 +101,7 @@ Fotografía facial
 Huella dactilar
 ```
 
-El modelo de datos contempla además una relación de fotografías faciales asociadas a cada sujeto. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/models.py
+El modelo de datos contempla además una relación de fotografías faciales asociadas a cada sujeto.
 
 Las fotografías pueden:
 
@@ -111,7 +111,7 @@ Las fotografías pueden:
 - 🗑️ Eliminarse.
 - 🔄 Asociarse nuevamente al sujeto.
 
-El backend guarda las fotografías en `static/faces/` y registra la referencia en la base de datos. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+El backend guarda las fotografías en `static/faces/` y registra la referencia en la base de datos. 
 
 ---
 
@@ -123,7 +123,7 @@ El frontend incluye una sección llamada:
 
 y permite realizar una captura desde cámara desde la interfaz web.
 
-También existe un flujo específico para recibir una fotografía desde Base64, etiquetándola como captura de webcam cuando corresponde. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/static/index.html citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+También existe un flujo específico para recibir una fotografía desde Base64, etiquetándola como captura de webcam cuando corresponde. 
 
 ---
 
@@ -175,7 +175,7 @@ Cuando la imagen contiene coordenadas EXIF, ForenSys intenta extraer:
 - GPS DOP.
 - Enlace de Google Maps.
 
-La extracción se realiza con `exifread`, mientras que los hashes MD5/SHA-256 se calculan sobre el contenido del archivo recibido. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+La extracción se realiza con `exifread`, mientras que los hashes MD5/SHA-256 se calculan sobre el contenido del archivo recibido. 
 
 ---
 
@@ -193,7 +193,7 @@ El backend verifica la disponibilidad de Sherlock en el entorno virtual y, si es
 tools/sherlock
 ```
 
-Los resultados se registran y se genera un reporte JSON. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+Los resultados se registran y se genera un reporte JSON. 
 
 ---
 
@@ -206,7 +206,7 @@ El módulo utiliza:
 - `user-scanner` como motor principal.
 - `holehe` como fallback.
 
-Los resultados se almacenan en archivos JSON dentro de `reports/`. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+Los resultados se almacenan en archivos JSON dentro de `reports/`. 
 
 ---
 
@@ -222,8 +222,7 @@ El módulo de teléfono utiliza `phonenumbers` para analizar el número y obtene
 - Tipo de línea.
 - Información de operador/ubicación cuando está disponible.
 
-También genera enlaces y consultas OSINT complementarias, incluyendo búsquedas web y referencias a servicios externos. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
-
+También genera enlaces y consultas OSINT complementarias, incluyendo búsquedas web y referencias a servicios externos. 
 ---
 
 ## 🪪 CC Intelligence — Colombia
@@ -239,7 +238,7 @@ El sistema:
 - Construye búsquedas avanzadas mediante Google Dorks.
 - Genera un reporte JSON.
 
-Entre las fuentes/enlaces contemplados por la interfaz y el backend se encuentran portales institucionales como Procuraduría, Policía, Contraloría, Rama Judicial, ADRES, SIMIT, RUES, SISBEN y Libreta Militar. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+Entre las fuentes/enlaces contemplados por la interfaz y el backend se encuentran portales institucionales como Procuraduría, Policía, Contraloría, Rama Judicial, ADRES, SIMIT, RUES, SISBEN y Libreta Militar. 
 
 ---
 
@@ -254,7 +253,7 @@ La lógica combina:
 - Google Dorks.
 - Búsquedas relacionadas con redes sociales.
 
-Los resultados se registran en un reporte JSON. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+Los resultados se registran en un reporte JSON.
 
 ---
 
@@ -276,9 +275,9 @@ con soporte para:
 - 🌐 Registrar IP de subida.
 - 🕒 Registrar fecha/hora de carga.
 
-La interfaz contempla una vista de **Casos Activos** y un panel de detalle para cada caso. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/static/index.html
+La interfaz contempla una vista de **Casos Activos** y un panel de detalle para cada caso.
 
-El modelo de base de datos define las entidades `Case` y `Evidence`, incluyendo MD5, SHA-256, tipo de archivo, tamaño, usuario que sube la evidencia, IP, timestamp y notas. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/models.py
+El modelo de base de datos define las entidades `Case` y `Evidence`, incluyendo MD5, SHA-256, tipo de archivo, tamaño, usuario que sube la evidencia, IP, timestamp y notas. 
 
 ---
 
@@ -303,7 +302,7 @@ hashed_password
 role
 ```
 
-y el rol predeterminado del modelo es `investigator`. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/models.py
+y el rol predeterminado del modelo es `investigator`. 
 
 > 🔒 El código actual crea un usuario administrativo de desarrollo al iniciar por primera vez. Antes de cualquier despliegue real, conviene reemplazar esa configuración por credenciales seguras y gestionadas externamente.
 
@@ -327,7 +326,7 @@ La conexión se define mediante:
 sqlite:///./ciberforense.db
 ```
 
-y SQLAlchemy se utiliza para crear y gestionar las entidades del sistema. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/database.py
+y SQLAlchemy se utiliza para crear y gestionar las entidades del sistema. 
 
 ---
 
@@ -390,7 +389,7 @@ y SQLAlchemy se utiliza para crear y gestionar las entidades del sistema. cit
 | 📡 WebSockets | Comunicación en tiempo real |
 | 🧪 scikit-learn | Base preparada para componentes de análisis/ML |
 
-La configuración automatizada del proyecto instala varias de estas dependencias mediante `setup.bat`. Para utilizar todos los módulos actuales también existen dependencias adicionales utilizadas directamente por el backend. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/setup.bat citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+La configuración automatizada del proyecto instala varias de estas dependencias mediante `setup.bat`. Para utilizar todos los módulos actuales también existen dependencias adicionales utilizadas directamente por el backend. 
 
 ---
 
@@ -471,7 +470,7 @@ Para cubrir las librerías utilizadas por el backend actual:
 pip install fastapi "uvicorn[standard]" sqlalchemy opencv-contrib-python scikit-learn websockets jinja2 python-multipart numpy bcrypt exifread pillow requests phonenumbers
 ```
 
-> `setup.bat` automatiza la creación del entorno virtual y la instalación de varias dependencias principales. Si se van a utilizar todos los módulos actuales, es recomendable instalar también las dependencias adicionales mostradas arriba. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/setup.bat
+> `setup.bat` automatiza la creación del entorno virtual y la instalación de varias dependencias principales. Si se van a utilizar todos los módulos actuales, es recomendable instalar también las dependencias adicionales mostradas arriba. 
 
 ---
 
@@ -497,7 +496,6 @@ Este script activa el entorno configurado y ejecuta:
 python main.py
 ```
 
-citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/iniciar.bat
 
 ---
 
@@ -515,7 +513,7 @@ Después abre:
 http://127.0.0.1:8000
 ```
 
-> El backend está definido como una aplicación FastAPI con el nombre `ForenSys Vision API`. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+> El backend está definido como una aplicación FastAPI con el nombre `ForenSys Vision API`. 
 
 ---
 
@@ -535,7 +533,7 @@ y la documentación alternativa:
 http://127.0.0.1:8000/redoc
 ```
 
-La API incluye endpoints para autenticación, sujetos, fotografías y módulos de análisis. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+La API incluye endpoints para autenticación, sujetos, fotografías y módulos de análisis. 
 
 ---
 
@@ -559,7 +557,7 @@ La API incluye endpoints para autenticación, sujetos, fotografías y módulos d
 | `POST` | `/api/osint/cedula` | CC Intelligence |
 | `POST` | `/api/osint/name` | Name Intelligence |
 
-Los endpoints anteriores se encuentran implementados en `main.py`. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+Los endpoints anteriores se encuentran implementados en `main.py`. 
 
 ---
 
@@ -582,7 +580,7 @@ reports/
 └── name_report_nombre_apellido.json
 ```
 
-Esto permite conservar los resultados y utilizarlos posteriormente para documentación o análisis. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/main.py
+Esto permite conservar los resultados y utilizarlos posteriormente para documentación o análisis. 
 
 ---
 
@@ -649,7 +647,7 @@ Por ello:
 - Protege las credenciales de acceso.
 - Cambia cualquier credencial de desarrollo antes de desplegar.
 
-El `.gitignore` actual excluye bases de datos, imágenes, modelos, variables de entorno, secretos y claves. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/.gitignore
+El `.gitignore` actual excluye bases de datos, imágenes, modelos, variables de entorno, secretos y claves. 
 
 ---
 
@@ -663,7 +661,7 @@ En el dashboard aparecen módulos:
 - 🛠️ En desarrollo.
 - 🕐 Próximamente.
 
-Por ejemplo, la propia interfaz identifica como futuros módulos componentes de Mobile, Disk, Memory, Malware, Network, Documents y otros. citehttps://github.com/AndresGonzalezDev444/ForenSys-Lab/blob/main/static/index.html
+Por ejemplo, la propia interfaz identifica como futuros módulos componentes de Mobile, Disk, Memory, Malware, Network, Documents y otros.
 
 Esto significa que **ForenSys Lab es una plataforma en evolución**, no una suite forense comercial terminada.
 
