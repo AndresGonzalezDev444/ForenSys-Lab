@@ -10,6 +10,7 @@ __pycache__/
 ciberforense.db
 
 *.png
+!Forensys-lab.png
 *.jpg
 *.jpeg
 *.gif
