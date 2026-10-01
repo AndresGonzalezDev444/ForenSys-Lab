@@ -1,0 +1,13 @@
+{
+    "suite_module": "ForenSys Email Intelligence",
+    "target_email": "lucuixee@gmail.com",
+    "total_found": 1,
+    "findings": [
+        {
+            "platform": "[✘] No results found for the given target",
+            "detail": "",
+            "status": "Found"
+        }
+    ],
+    "report_file": "reports/email_report_lucuixee_at_gmail.com.json"
+}

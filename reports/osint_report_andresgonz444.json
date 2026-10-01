@@ -1,31 +1,21 @@
 {
     "suite_module": "ForenSys OSINT & NetTracker",
     "target_username": "andresgonz444",
-    "total_found": 6,
+    "total_found": 4,
     "findings": [
-        {
-            "platform": "Contently",
-            "url": "https://andresgonz444.contently.com/",
-            "status": "Found"
-        },
         {
             "platform": "Duolingo",
             "url": "https://www.duolingo.com/profile/andresgonz444",
             "status": "Found"
         },
         {
-            "platform": "F3.cool",
-            "url": "https://f3.cool/andresgonz444/",
+            "platform": "HackenProof (Hackers)",
+            "url": "https://hackenproof.com/hackers/andresgonz444",
             "status": "Found"
         },
         {
             "platform": "TikTok",
             "url": "https://www.tiktok.com/@andresgonz444",
-            "status": "Found"
-        },
-        {
-            "platform": "Velomania",
-            "url": "https://forum.velomania.ru/member.php?username=andresgonz444",
             "status": "Found"
         },
         {

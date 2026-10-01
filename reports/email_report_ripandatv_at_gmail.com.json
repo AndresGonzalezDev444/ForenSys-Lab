@@ -1,0 +1,118 @@
+{
+    "suite_module": "ForenSys Email Intelligence",
+    "target_email": "ripandatv@gmail.com",
+    "total_found": 22,
+    "findings": [
+        {
+            "platform": "Disqus",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Kick",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Wix",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Wondershare",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Wordpress",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Hackerrank",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Huggingface",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Appletv",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Chess.com",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Crazygames",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Duolingo",
+            "detail": "Registered<br>• streak: 0<br>• has_plus: False<br>• has_google_id: True<br>• has_facebook_id: False<br>• avatar: https://d3gq3s1iyyx31w.cloudfront.net/static/render/bg/BackgroundColor-9/Body-1/ClothingColor-9/Expression-8/EyeColor-1/FacialHair-5/FacialHairColor-1/Glasses-0/GlassesColor-3/Headwear-7/HeadwearColor-9/MainHair-55/MainHairColor-1/Nose%20Piercing-0/Piercings-0/SkinTone-6/Wrinkles-0",
+            "status": "Found"
+        },
+        {
+            "platform": "Spotify",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Firefox",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Office365",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Dropbox",
+            "detail": "Registered<br>• exists_as_recovery_email: False<br>• has_passkey: False",
+            "status": "Found"
+        },
+        {
+            "platform": "Amazon",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Pinterest",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "X",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Instagram",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Gravatar",
+            "detail": "Registered<br>• username: ripandatv<br>• display_name: GonbiYT ツ<br>• profile_url: https://gravatar.com/ripandatv<br>• profile_type: Personal<br>• created: 6 years ago<br>• avatar: https://www.gravatar.com/avatar/2ce38bbfc2323771a9ab1aea796bc5b5c08f3317c660c673003627fb449ba04e<br>• thumbnail_url: https://1.gravatar.com/avatar/2ce38bbfc2323771a9ab1aea796bc5b5c08f3317c660c673003627fb449ba04e<br>• photos: https://0.gravatar.com/avatar/dd44c801240430c1ff6bdd5afb7d6c70",
+            "status": "Found"
+        },
+        {
+            "platform": "Facebook",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Espn",
+            "detail": "Registered",
+            "status": "Found"
+        }
+    ],
+    "report_file": "reports/email_report_ripandatv_at_gmail.com.json"
+}

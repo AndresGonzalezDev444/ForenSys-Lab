@@ -1,0 +1,28 @@
+{
+    "suite_module": "ForenSys Email Intelligence",
+    "target_email": "johansbtes@gmail.com",
+    "total_found": 4,
+    "findings": [
+        {
+            "platform": "Appletv",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Myfitnesspal",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Office365",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Rappi",
+            "detail": "Registered<br>• phone: ******1711<br>• verification_type: sms",
+            "status": "Found"
+        }
+    ],
+    "report_file": "reports/email_report_johansbtes_at_gmail.com.json"
+}

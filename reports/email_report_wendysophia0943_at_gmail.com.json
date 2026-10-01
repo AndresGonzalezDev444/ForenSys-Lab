@@ -1,0 +1,63 @@
+{
+    "suite_module": "ForenSys Email Intelligence",
+    "target_email": "wendysophia0943@gmail.com",
+    "total_found": 11,
+    "findings": [
+        {
+            "platform": "Kick",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Babbel",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Duolingo",
+            "detail": "Registered<br>• streak: 0<br>• has_plus: False<br>• has_google_id: False<br>• has_facebook_id: False<br>• avatar: https://simg-ssl.duolingo.com/avatar/default_2",
+            "status": "Found"
+        },
+        {
+            "platform": "Spotify",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Office365",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Amazon",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Rappi",
+            "detail": "Registered<br>• phone: ******1484<br>• verification_type: sms",
+            "status": "Found"
+        },
+        {
+            "platform": "Instagram",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Pinterest",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "X",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Facebook",
+            "detail": "Registered",
+            "status": "Found"
+        }
+    ],
+    "report_file": "reports/email_report_wendysophia0943_at_gmail.com.json"
+}

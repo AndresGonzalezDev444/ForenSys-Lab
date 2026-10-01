@@ -1,26 +1,26 @@
 {
     "suite_module": "ForenSys OSINT & NetTracker",
-    "target_username": "zebax140",
+    "target_username": "lucuixe",
     "total_found": 4,
     "findings": [
         {
-            "platform": "HackenProof (Hackers)",
-            "url": "https://hackenproof.com/hackers/zebax140",
+            "platform": "F3.cool",
+            "url": "https://f3.cool/lucuixe/",
             "status": "Found"
         },
         {
             "platform": "TikTok",
-            "url": "https://www.tiktok.com/@zebax140",
+            "url": "https://www.tiktok.com/@lucuixe",
             "status": "Found"
         },
         {
-            "platform": "Pinterest",
-            "url": "https://www.pinterest.com/zebax140/",
+            "platform": "Trakt",
+            "url": "https://www.trakt.tv/users/lucuixe",
             "status": "Found"
         },
         {
             "platform": "BabyRu",
-            "url": "https://www.baby.ru/u/zebax140",
+            "url": "https://www.baby.ru/u/lucuixe",
             "status": "Found"
         }
     ]

@@ -4,13 +4,13 @@
     "total_found": 3,
     "findings": [
         {
-            "platform": "TikTok",
-            "url": "https://www.tiktok.com/@johansbtes",
+            "platform": "HackenProof (Hackers)",
+            "url": "https://hackenproof.com/hackers/johansbtes",
             "status": "Found"
         },
         {
-            "platform": "Trakt",
-            "url": "https://www.trakt.tv/users/johansbtes",
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@johansbtes",
             "status": "Found"
         },
         {

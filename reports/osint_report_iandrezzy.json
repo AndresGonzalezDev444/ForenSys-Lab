@@ -1,0 +1,42 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "iandrezzy",
+    "total_found": 7,
+    "findings": [
+        {
+            "platform": "Hugging Face",
+            "url": "https://huggingface.co/iandrezzy",
+            "status": "Found"
+        },
+        {
+            "platform": "Kick",
+            "url": "https://kick.com/iandrezzy",
+            "status": "Found"
+        },
+        {
+            "platform": "RuneScape",
+            "url": "https://apps.runescape.com/runemetrics/app/overview/player/iandrezzy",
+            "status": "Found"
+        },
+        {
+            "platform": "Trakt",
+            "url": "https://www.trakt.tv/users/iandrezzy",
+            "status": "Found"
+        },
+        {
+            "platform": "Xbox Gamertag",
+            "url": "https://xboxgamertag.com/search/iandrezzy",
+            "status": "Found"
+        },
+        {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/@iandrezzy",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/iandrezzy",
+            "status": "Found"
+        }
+    ]
+}

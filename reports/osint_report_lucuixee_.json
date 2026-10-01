@@ -1,0 +1,42 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "lucuixee_",
+    "total_found": 7,
+    "findings": [
+        {
+            "platform": "Chess",
+            "url": "https://www.chess.com/member/lucuixee_",
+            "status": "Found"
+        },
+        {
+            "platform": "F3.cool",
+            "url": "https://f3.cool/lucuixee_/",
+            "status": "Found"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@lucuixee_",
+            "status": "Found"
+        },
+        {
+            "platform": "Trakt",
+            "url": "https://www.trakt.tv/users/lucuixee_",
+            "status": "Found"
+        },
+        {
+            "platform": "omg.lol",
+            "url": "https://lucuixee_.omg.lol",
+            "status": "Found"
+        },
+        {
+            "platform": "threads",
+            "url": "https://www.threads.net/@lucuixee_",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/lucuixee_",
+            "status": "Found"
+        }
+    ]
+}

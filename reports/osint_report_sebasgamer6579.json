@@ -1,0 +1,32 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "sebasgamer6579",
+    "total_found": 5,
+    "findings": [
+        {
+            "platform": "Discord",
+            "url": "https://discord.com",
+            "status": "Found"
+        },
+        {
+            "platform": "HackenProof (Hackers)",
+            "url": "https://hackenproof.com/hackers/sebasgamer6579",
+            "status": "Found"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@sebasgamer6579",
+            "status": "Found"
+        },
+        {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/@sebasgamer6579",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/sebasgamer6579",
+            "status": "Found"
+        }
+    ]
+}

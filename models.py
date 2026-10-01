@@ -40,3 +40,31 @@ class Alert(Base):
     location = Column(String, nullable=True)
     details = Column(Text, nullable=True)
     suspect = relationship("Suspect", back_populates="alerts")
+
+class Case(Base):
+    __tablename__ = "cases"
+    id = Column(Integer, primary_key=True, index=True)
+    case_name = Column(String, nullable=False)
+    case_hash = Column(String, unique=True, index=True, nullable=False)
+    description = Column(Text, nullable=True)
+    created_by = Column(String, nullable=True)
+    status = Column(String, default="abierto")
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
+    evidences = relationship("Evidence", back_populates="case", cascade="all, delete-orphan")
+
+class Evidence(Base):
+    __tablename__ = "evidences"
+    id = Column(Integer, primary_key=True, index=True)
+    case_id = Column(Integer, ForeignKey("cases.id"), nullable=False)
+    file_name = Column(String, nullable=False)
+    original_name = Column(String, nullable=False)
+    file_path = Column(String, nullable=False)
+    file_type = Column(String, nullable=True)
+    file_size = Column(Integer, nullable=True)
+    md5_hash = Column(String, nullable=True)
+    sha256_hash = Column(String, nullable=True)
+    uploaded_by = Column(String, nullable=True)
+    upload_ip = Column(String, nullable=True)
+    upload_timestamp = Column(DateTime, default=datetime.datetime.utcnow)
+    notes = Column(Text, nullable=True)
+    case = relationship("Case", back_populates="evidences")

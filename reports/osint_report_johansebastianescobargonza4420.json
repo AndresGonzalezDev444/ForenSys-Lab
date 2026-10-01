@@ -1,0 +1,32 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "johansebastianescobargonza4420",
+    "total_found": 5,
+    "findings": [
+        {
+            "platform": "BoardGameGeek",
+            "url": "https://boardgamegeek.com/user/johansebastianescobargonza4420",
+            "status": "Found"
+        },
+        {
+            "platform": "HackenProof (Hackers)",
+            "url": "https://hackenproof.com/hackers/johansebastianescobargonza4420",
+            "status": "Found"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@johansebastianescobargonza4420",
+            "status": "Found"
+        },
+        {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/@johansebastianescobargonza4420",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/johansebastianescobargonza4420",
+            "status": "Found"
+        }
+    ]
+}

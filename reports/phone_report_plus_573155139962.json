@@ -1,0 +1,135 @@
+{
+    "suite_module": "ForenSys Phone Intelligence",
+    "target_phone": "+573155139962",
+    "phone_info": {
+        "number_e164": "+573155139962",
+        "number_international": "+57 315 5139962",
+        "number_national": "315 5139962",
+        "valid": true,
+        "possible": true,
+        "country_code": 57,
+        "national_number": "3155139962",
+        "country": "Colombia",
+        "carrier": "Movistar",
+        "timezone": [
+            "America/Bogota"
+        ],
+        "line_type": "Móvil",
+        "secop_matches": [],
+        "dorks": [
+            {
+                "query": "WhatsApp API",
+                "description": "Verificar WhatsApp",
+                "url": "https://wa.me/573155139962"
+            },
+            {
+                "query": "Truecaller",
+                "description": "Buscar en Truecaller",
+                "url": "https://www.truecaller.com/search/co/3155139962"
+            },
+            {
+                "query": "Sync.me",
+                "description": "Buscar en Sync.me",
+                "url": "https://sync.me/search/?number=+573155139962"
+            },
+            {
+                "query": "Google Maps",
+                "description": "Ubicación Regional",
+                "url": "https://www.google.com/maps/search/Colombia"
+            },
+            {
+                "query": "\"+573155139962\"",
+                "description": "Búsqueda exacta formato E.164",
+                "url": "https://www.google.com/search?q=%22+573155139962%22"
+            },
+            {
+                "query": "\"315 5139962\"",
+                "description": "Búsqueda formato nacional",
+                "url": "https://www.google.com/search?q=%22315+5139962%22"
+            },
+            {
+                "query": "\"3155139962\"",
+                "description": "Búsqueda por dígitos",
+                "url": "https://www.google.com/search?q=%223155139962%22"
+            },
+            {
+                "query": "site:facebook.com \"3155139962\"",
+                "description": "Facebook",
+                "url": "https://www.google.com/search?q=site%3Afacebook.com+%223155139962%22"
+            },
+            {
+                "query": "site:instagram.com \"3155139962\"",
+                "description": "Instagram",
+                "url": "https://www.google.com/search?q=site%3Ainstagram.com+%223155139962%22"
+            },
+            {
+                "query": "site:linkedin.com \"3155139962\"",
+                "description": "LinkedIn",
+                "url": "https://www.google.com/search?q=site%3Alinkedin.com+%223155139962%22"
+            },
+            {
+                "query": "site:twitter.com OR site:x.com \"3155139962\"",
+                "description": "Twitter/X",
+                "url": "https://www.google.com/search?q=site%3Atwitter.com+OR+site%3Ax.com+%223155139962%22"
+            }
+        ]
+    },
+    "dorks": [
+        {
+            "query": "WhatsApp API",
+            "description": "Verificar WhatsApp",
+            "url": "https://wa.me/573155139962"
+        },
+        {
+            "query": "Truecaller",
+            "description": "Buscar en Truecaller",
+            "url": "https://www.truecaller.com/search/co/3155139962"
+        },
+        {
+            "query": "Sync.me",
+            "description": "Buscar en Sync.me",
+            "url": "https://sync.me/search/?number=+573155139962"
+        },
+        {
+            "query": "Google Maps",
+            "description": "Ubicación Regional",
+            "url": "https://www.google.com/maps/search/Colombia"
+        },
+        {
+            "query": "\"+573155139962\"",
+            "description": "Búsqueda exacta formato E.164",
+            "url": "https://www.google.com/search?q=%22+573155139962%22"
+        },
+        {
+            "query": "\"315 5139962\"",
+            "description": "Búsqueda formato nacional",
+            "url": "https://www.google.com/search?q=%22315+5139962%22"
+        },
+        {
+            "query": "\"3155139962\"",
+            "description": "Búsqueda por dígitos",
+            "url": "https://www.google.com/search?q=%223155139962%22"
+        },
+        {
+            "query": "site:facebook.com \"3155139962\"",
+            "description": "Facebook",
+            "url": "https://www.google.com/search?q=site%3Afacebook.com+%223155139962%22"
+        },
+        {
+            "query": "site:instagram.com \"3155139962\"",
+            "description": "Instagram",
+            "url": "https://www.google.com/search?q=site%3Ainstagram.com+%223155139962%22"
+        },
+        {
+            "query": "site:linkedin.com \"3155139962\"",
+            "description": "LinkedIn",
+            "url": "https://www.google.com/search?q=site%3Alinkedin.com+%223155139962%22"
+        },
+        {
+            "query": "site:twitter.com OR site:x.com \"3155139962\"",
+            "description": "Twitter/X",
+            "url": "https://www.google.com/search?q=site%3Atwitter.com+OR+site%3Ax.com+%223155139962%22"
+        }
+    ],
+    "report_file": "reports/phone_report_plus_573155139962.json"
+}

@@ -1,11 +1,21 @@
 {
     "suite_module": "ForenSys OSINT & NetTracker",
     "target_username": "ripandatv",
-    "total_found": 6,
+    "total_found": 7,
     "findings": [
+        {
+            "platform": "Contently",
+            "url": "https://ripandatv.contently.com/",
+            "status": "Found"
+        },
         {
             "platform": "Gravatar",
             "url": "http://en.gravatar.com/ripandatv",
+            "status": "Found"
+        },
+        {
+            "platform": "HackenProof (Hackers)",
+            "url": "https://hackenproof.com/hackers/ripandatv",
             "status": "Found"
         },
         {
@@ -21,11 +31,6 @@
         {
             "platform": "TikTok",
             "url": "https://www.tiktok.com/@ripandatv",
-            "status": "Found"
-        },
-        {
-            "platform": "Trakt",
-            "url": "https://www.trakt.tv/users/ripandatv",
             "status": "Found"
         },
         {

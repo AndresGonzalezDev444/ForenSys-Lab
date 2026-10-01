@@ -1,0 +1,77 @@
+{
+    "suite_module": "ForenSys Name Intelligence",
+    "target_name": "Wendy Sophia Bejarano Garcia",
+    "siri_results": [],
+    "siri_total": 0,
+    "dorks": [
+        {
+            "query": "\"Wendy Sophia Bejarano Garcia\"",
+            "description": "Búsqueda exacta del nombre",
+            "url": "https://www.google.com/search?q=%22Wendy+Sophia+Bejarano+Garcia%22"
+        },
+        {
+            "query": "\"Wendy Sophia Bejarano Garcia\" site:gov.co",
+            "description": "Portales gubernamentales",
+            "url": "https://www.google.com/search?q=%22Wendy+Sophia+Bejarano+Garcia%22+site%3Agov.co"
+        },
+        {
+            "query": "\"Wendy Sophia Bejarano Garcia\" filetype:pdf",
+            "description": "Documentos PDF públicos",
+            "url": "https://www.google.com/search?q=%22Wendy+Sophia+Bejarano+Garcia%22+filetype%3Apdf"
+        },
+        {
+            "query": "\"Wendy Sophia Bejarano Garcia\" filetype:xlsx OR filetype:xls OR filetype:csv",
+            "description": "Hojas de cálculo",
+            "url": "https://www.google.com/search?q=%22Wendy+Sophia+Bejarano+Garcia%22+filetype%3Axlsx+OR+filetype%3Axls"
+        },
+        {
+            "query": "\"Wendy Sophia Bejarano Garcia\" contrato OR licitación",
+            "description": "Contratación pública",
+            "url": "https://www.google.com/search?q=%22Wendy+Sophia+Bejarano+Garcia%22+contrato+OR+licitaci%C3%B3n"
+        },
+        {
+            "query": "\"Wendy Sophia Bejarano Garcia\" site:secop.gov.co",
+            "description": "SECOP contratación",
+            "url": "https://www.google.com/search?q=%22Wendy+Sophia+Bejarano+Garcia%22+site%3Asecop.gov.co"
+        },
+        {
+            "query": "\"Wendy Sophia Bejarano Garcia\" site:datos.gov.co",
+            "description": "Datos abiertos",
+            "url": "https://www.google.com/search?q=%22Wendy+Sophia+Bejarano+Garcia%22+site%3Adatos.gov.co"
+        }
+    ],
+    "social_links": [
+        {
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/search/people/?q=Wendy+Sophia+Bejarano+Garcia",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/search/results/people/?keywords=Wendy+Sophia+Bejarano+Garcia",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "Instagram",
+            "url": "https://www.google.com/search?q=site%3Ainstagram.com+%22Wendy+Sophia+Bejarano+Garcia%22",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "Twitter/X",
+            "url": "https://x.com/search?q=%22Wendy+Sophia+Bejarano+Garcia%22&f=user",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.google.com/search?q=site%3Atiktok.com+%22Wendy+Sophia+Bejarano+Garcia%22",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/results?search_query=%22Wendy+Sophia+Bejarano+Garcia%22",
+            "icon": "[Social]"
+        }
+    ],
+    "findings": [],
+    "report_file": "reports/name_report_Wendy_Sophia_Bejarano_Garcia.json"
+}

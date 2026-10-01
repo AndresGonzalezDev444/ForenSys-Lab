@@ -1,0 +1,53 @@
+{
+    "suite_module": "ForenSys Email Intelligence",
+    "target_email": "lucuixe@gmail.com",
+    "total_found": 9,
+    "findings": [
+        {
+            "platform": "Duolingo",
+            "detail": "Registered<br>• streak: 0<br>• has_plus: False<br>• has_google_id: False<br>• has_facebook_id: False<br>• avatar: https://d3gq3s1iyyx31w.cloudfront.net/static/render/bg/BackgroundColor-4/Body-4/ClothingColor-1/CostumeArtboard-54/Expression-4/EyeColor-1/FacialHair-0/FacialHairColor-10/Glasses-0/GlassesColor-1/HasCostume-1/Headwear-0/HeadwearColor-1/MainHair-2/MainHairColor-3/Nose%20Piercing-0/Piercings-1/SkinTone-4/Wrinkles-2",
+            "status": "Found"
+        },
+        {
+            "platform": "Heyjapan",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Spotify",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Firefox",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Office365",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Pinterest",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "X",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Instagram",
+            "detail": "Registered",
+            "status": "Found"
+        },
+        {
+            "platform": "Facebook",
+            "detail": "Registered",
+            "status": "Found"
+        }
+    ],
+    "report_file": "reports/email_report_lucuixe_at_gmail.com.json"
+}

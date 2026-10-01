@@ -1,8 +1,13 @@
 {
     "suite_module": "ForenSys OSINT & NetTracker",
     "target_username": "wendysophia0943",
-    "total_found": 3,
+    "total_found": 4,
     "findings": [
+        {
+            "platform": "HackenProof (Hackers)",
+            "url": "https://hackenproof.com/hackers/wendysophia0943",
+            "status": "Found"
+        },
         {
             "platform": "TikTok",
             "url": "https://www.tiktok.com/@wendysophia0943",

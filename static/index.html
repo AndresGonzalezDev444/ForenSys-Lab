@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -160,7 +161,7 @@
             <span>Sujetos</span>
             <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
           </a>
-          <a onclick="navigateTo('suspects')" id="nav-evidencias">
+          <a onclick="navigateTo('evidencias')" id="nav-evidencias">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
             <span>Evidencias</span>
             <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -170,7 +171,7 @@
             <span>Análisis Rápido</span>
             <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
           </a>
-          <a onclick="navigateTo('about')" id="nav-reportes">
+          <a onclick="navigateTo('reportes')" id="nav-reportes">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
             <span>Reportes</span>
             <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -326,34 +327,38 @@
                 <div class="afis-panel">
                   <div class="afis-upload-zone">
                     <!-- Upload Methods -->
-                    <div class="upload-methods">
-                      <button class="upload-method-btn" onclick="document.getElementById('afis-file-input').click()">
+                    <div class="upload-methods" style="margin-bottom:1rem;">
+                      <button class="upload-method-btn active" id="btn-mode-sim" onclick="switchAFISMode('sim')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10a2 2 0 1 0 0 4"/><path d="M12 6a6 6 0 0 0-6 6"/><path d="M18 12a6 6 0 0 0-6-6"/></svg>
+                        Simulación
+                      </button>
+                      <button class="upload-method-btn" id="btn-mode-real" onclick="switchAFISMode('real')">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                        Subir Imagen
+                        Cotejo Real
                       </button>
-                      <button class="upload-method-btn" disabled title="Próximamente">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6.01" y2="10"/><line x1="10" y1="10" x2="10.01" y2="10"/></svg>
+                      <button class="upload-method-btn" id="btn-mode-usb" onclick="switchAFISMode('usb')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6.01" y2="10"/></svg>
                         Escáner USB
-                      </button>
-                      <button class="upload-method-btn" disabled title="Próximamente">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 10a2 2 0 1 0 0 4"/><path d="M18 12a6 6 0 0 0-6-6"/><path d="M12 2a10 10 0 0 0-10 10"/><path d="M22 12a10 10 0 0 0-10-10"/></svg>
-                        Lector Biométrico
                       </button>
                     </div>
 
-                    <!-- Dropzone -->
-                    <div class="dropzone-area" id="afis-dropzone" onclick="document.getElementById('afis-file-input').click()">
-                      <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 10a2 2 0 1 0 0 4"/><path d="M12 6a6 6 0 0 0-6 6"/><path d="M18 12a6 6 0 0 0-6-6"/><path d="M12 2a10 10 0 0 0-10 10"/><path d="M22 12a10 10 0 0 0-10-10"/><path d="M2 12a10 10 0 0 0 10 10"/><path d="M12 22a10 10 0 0 0 10-10"/>
-                      </svg>
-                      <div class="dropzone-text">Arrastra y suelta la huella</div>
-                      <div class="dropzone-hint">o haz click para seleccionar</div>
-                      <div class="dropzone-hint" style="margin-top:0.5rem;opacity:0.6;">.JPG, .PNG, .TIFF, .BMP, .WSQ</div>
-                      <input type="file" id="afis-file-input" style="display:none;" accept=".jpg,.jpeg,.png,.bmp,.tiff,.tif,.wsq,image/*" onchange="handleFingerprintUpload(event)">
+                    <!-- Dropzone Query -->
+                    <div id="afis-dropzone-container">
+                      <div class="dropzone-area" id="afis-dropzone-query" onclick="document.getElementById('afis-file-input').click()">
+                        <div class="dropzone-text">Sube la Huella de Consulta</div>
+                        <input type="file" id="afis-file-input" style="display:none;" accept=".jpg,.jpeg,.png,.bmp,.tiff,.tif,.wsq,image/*" onchange="handleFingerprintUpload(event, 1)">
+                      </div>
+                      
+                      <!-- USB Placeholder (Hidden by default) -->
+                      <div id="afis-usb-container" style="display:none; text-align:center; padding: 2rem;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:48px;height:48px;margin-bottom:1rem;color:var(--medium);"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6.01" y2="10"/></svg>
+                        <p>Lector Biométrico USB</p>
+                        <button class="btn btn-secondary mt-1" onclick="simulateUSBDetection()">Detectar Dispositivo</button>
+                      </div>
                     </div>
 
                     <!-- Compare Button -->
-                    <button class="afis-compare-btn" id="afis-compare-btn" onclick="startComparison()" disabled>
+                    <button class="afis-compare-btn" id="afis-compare-btn" onclick="startComparison()" disabled style="margin-top:1rem;">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                       Iniciar Comparación
                     </button>
@@ -363,19 +368,15 @@
                 <!-- Panel 3: Base de Datos / Huellas -->
                 <div class="afis-panel">
                   <div class="afis-panel-title">
-                    Base de Datos / Huellas
+                    Huella de Referencia / BD
                   </div>
                   <div class="fingerprint-preview" id="afis-db-preview">
-                    <svg viewBox="0 0 100 120" fill="none" stroke="currentColor" stroke-width="1.2">
-                      <ellipse cx="50" cy="60" rx="32" ry="42" opacity="0.15"/>
-                      <path d="M50 22 C30 22 24 40 24 60 C24 80 30 98 50 98" opacity="0.12" stroke-linecap="round"/>
-                      <path d="M50 22 C70 22 76 40 76 60 C76 80 70 98 50 98" opacity="0.12" stroke-linecap="round"/>
-                      <path d="M50 30 C35 30 30 45 30 60 C30 75 35 90 50 90" opacity="0.1" stroke-linecap="round"/>
-                      <path d="M50 30 C65 30 70 45 70 60 C70 75 65 90 50 90" opacity="0.1" stroke-linecap="round"/>
-                      <path d="M50 38 C40 38 36 50 36 60 C36 70 40 82 50 82" opacity="0.08" stroke-linecap="round"/>
-                      <path d="M50 38 C60 38 64 50 64 60 C64 70 60 82 50 82" opacity="0.08" stroke-linecap="round"/>
-                      <circle cx="50" cy="60" r="8" opacity="0.06"/>
-                    </svg>
+                    <!-- Second Upload Button inside preview if empty -->
+                    <div id="afis-db-placeholder" style="text-align:center;cursor:pointer;padding:2rem;" onclick="document.getElementById('afis-file-input-2').click()">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;margin-bottom:0.5rem;color:rgba(255,255,255,0.3)"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                      <p style="font-size:0.8rem;color:var(--muted)">Sube la huella de referencia</p>
+                    </div>
+                    <input type="file" id="afis-file-input-2" style="display:none;" accept="image/*" onchange="handleFingerprintUpload(event, 2)">
                   </div>
                   <div class="quality-indicators" id="afis-db-quality">
                     <div class="quality-badge">
@@ -446,6 +447,10 @@
                     <button class="afis-detail-btn" id="afis-detail-btn" style="display:none;" onclick="alert('Análisis detallado disponible en próxima versión.')">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                       Ver Análisis Detallado
+                    </button>
+                    <button class="afis-detail-btn" id="afis-reset-btn" style="display:none; margin-top:0.5rem; background:rgba(255,255,255,0.05); border-color:rgba(255,255,255,0.15);" onclick="resetComparison()">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+                      Cotejar Nueva Huella
                     </button>
                   </div>
                 </div>
@@ -719,6 +724,7 @@
                 <img src="images/forensys_mobile.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Mobile / Cloud">
                 <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Mobile / Cloud</h3>
                 <p class="text-muted" style="font-size:0.9rem;">Identificación Biométrica Instantánea en Campo.</p>
+                <button class="btn btn-primary btn-full mt-2" onclick="openMobileDownloadModal(); event.stopPropagation();">Descargar</button>
               </div>
 
               <div class="panel" style="padding:1rem; cursor:pointer;" onclick="navigateTo('cyber')">
@@ -732,6 +738,7 @@
                 <img src="images/forensys_ballistics.png" style="width:100%; border-radius:8px; margin-bottom:1rem;" alt="ForenSys Ballistics 3D">
                 <h3 style="color:var(--accent-bright); font-size:1.1rem; margin-bottom:0.5rem;">ForenSys Ballistics 3D</h3>
                 <p class="text-muted" style="font-size:0.9rem;">Simulación y Trayectoria de Proyectiles.</p>
+                <button class="btn btn-primary btn-full mt-2" onclick="openBallisticsModule(); event.stopPropagation();">Abrir Módulo</button>
               </div>
 
               <div class="panel" style="padding:1rem; cursor:pointer;" onclick="navigateTo('osint')">
@@ -820,49 +827,274 @@
             <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
               <div>
                 <h1 style="color:#ef4444;">ForenSys OSINT & NetTracker</h1>
-                <p>Correlación de identidades digitales y mapeo de redes (Basado en Sherlock / Maltego).</p>
+                <p>Ciberinteligencia Digital, Correlación de Identidades y Huella Digital.</p>
               </div>
-              <button class="btn btn-secondary" onclick="navigateTo('dashboard')">Volver al Dashboard</button>
+              <button class="btn btn-secondary" onclick="navigateTo('suite')">Volver a Suite</button>
             </div>
 
-            <div class="dash-grid" style="grid-template-columns: 300px 1fr; align-items:start;">
+            <!-- MODULE SELECTOR -->
+            <div class="osint-module-grid">
+              <!-- Username Intel -->
+              <div class="osint-module-card active" id="osint-mod-username" onclick="selectOSINTModule('username')">
+                <div class="osint-module-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div class="osint-module-info">
+                  <div class="osint-module-title">Username Intel</div>
+                  <div class="osint-module-desc">Sherlock Engine</div>
+                </div>
+              </div>
 
-              <!-- Panel Izquierdo: Buscador y Detalles -->
+              <!-- Email Intel -->
+              <div class="osint-module-card" id="osint-mod-email" onclick="selectOSINTModule('email')">
+                <div class="osint-module-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div class="osint-module-info">
+                  <div class="osint-module-title">Email Intel</div>
+                  <div class="osint-module-desc">user-scanner Engine</div>
+                </div>
+              </div>
+
+              <!-- Phone Intel -->
+              <div class="osint-module-card" id="osint-mod-phone" onclick="selectOSINTModule('phone')">
+                <div class="osint-module-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="osint-module-info">
+                  <div class="osint-module-title">Phone Intel</div>
+                  <div class="osint-module-desc">phonenumbers Engine</div>
+                </div>
+              </div>
+
+              <!-- CC Intel -->
+              <div class="osint-module-card" id="osint-mod-cedula" onclick="selectOSINTModule('cedula')">
+                <div class="osint-module-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div class="osint-module-info">
+                  <div class="osint-module-title">CC Intel (COL)</div>
+                  <div class="osint-module-desc">Datos Abiertos API</div>
+                </div>
+              </div>
+
+              <!-- Name Intel -->
+              <div class="osint-module-card" id="osint-mod-name" onclick="selectOSINTModule('name')">
+                <div class="osint-module-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="16" y1="11" x2="22" y2="11"/><line x1="19" y1="8" x2="19" y2="14"/></svg>
+                </div>
+                <div class="osint-module-info">
+                  <div class="osint-module-title">Name Intel</div>
+                  <div class="osint-module-desc">SIRI & Social Media</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dash-grid" style="grid-template-columns: 320px 1fr; align-items:start; margin-top:1.5rem;">
+
+              <!-- Panel Izquierdo: Buscador y Detalles Estructurados -->
               <div style="display:flex; flex-direction:column; gap:1rem;">
                 <div class="panel">
-                  <h2 style="color:var(--text); font-size:1.1rem; margin-bottom:1rem;">Analizar Objetivo</h2>
-                  <form id="osint-form" onsubmit="runOSINT(event)">
-                    <input type="text" id="osint-query" class="input-field mb-1" placeholder="Ej: johndoe, johndoe@gmail.com, 192.168.1.1" required>
+                  <h2 id="osint-active-title" style="color:var(--text); font-size:1.1rem; margin-bottom:1rem;">Analizar Username</h2>
+                  <form id="osint-form" onsubmit="runOSINTAnalysis(event)">
+                    <input type="text" id="osint-query" class="input-field mb-1" placeholder="Ej: johndoe" required>
                     <button type="submit" class="btn btn-primary btn-full" id="osint-btn">Iniciar Rastreo</button>
                   </form>
                 </div>
 
-                <div class="panel" id="osint-details-panel" style="display:none; flex:1;">
-                  <h3 style="color:var(--accent-bright); font-size:1rem; margin-bottom:0.5rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem;">Detalles del Nodo</h3>
-                  <div id="osint-node-details" style="font-size:0.9rem; word-break:break-all;">
-                    Selecciona un nodo en el grafo para ver detalles.
+                <div class="panel" id="osint-details-panel" style="display:none; flex:1; max-height: 400px; overflow-y: auto;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:0.5rem; margin-bottom:0.5rem;">
+                    <h3 style="color:var(--accent-bright); font-size:1rem; margin:0;">Resultados Encontrados</h3>
+                    <button id="osint-download-btn" class="btn btn-secondary btn-sm hidden" onclick="downloadOSINTReport()" style="padding: 4px 8px; font-size: 0.75rem;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px; height:14px; margin-right:4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Descargar
+                    </button>
+                  </div>
+                  <div id="osint-node-details" style="font-size:0.9rem; word-break:break-word;">
+                    <!-- Los resultados estructurados se inyectarán aquí -->
                   </div>
                 </div>
               </div>
 
-              <!-- Panel Derecho: Consola Sherlock -->
-              <div class="panel" style="padding:0; overflow:hidden; position:relative; min-height:500px; display:flex; flex-direction:column; background:#0c0c0c;">
+              <!-- Panel Derecho: Consola Streaming -->
+              <div class="panel" style="padding:0; overflow:hidden; position:relative; min-height:550px; display:flex; flex-direction:column; background:#0c0c0c;">
                 <div style="padding:1rem; background:#1e1e1e; border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center; z-index:10;">
-                  <h3 style="margin:0; font-size:1rem; color:#4ade80; font-family:monospace;">Sherlock Console Output</h3>
+                  <h3 id="osint-console-title" style="margin:0; font-size:1rem; color:#4ade80; font-family:monospace;">Sherlock Console Output</h3>
                 </div>
 
-                <div id="osint-console" style="flex:1; width:100%; height:100%; background:#0c0c0c; color:#4ade80; font-family:Consolas, monospace; font-size:0.9rem; padding:1rem; overflow-y:auto; line-height:1.4;">
-                  <div style="color:#666;">Esperando ejecución de comando...</div>
+                <div id="osint-console" style="flex:1; width:100%; height:100%; background:#0c0c0c; color:#4ade80; font-family:Consolas, monospace; font-size:0.9rem; padding:1rem; overflow-y:auto; line-height:1.5;">
+                  <div style="color:#666;">Selecciona un módulo y ejecuta el análisis...</div>
                 </div>
 
-                <div id="osint-loading" class="hidden" style="position:absolute; inset:0; background:rgba(12,12,12,0.6); display:flex; align-items:center; justify-content:center; z-index:20; pointer-events:none;">
-                  <p style="color:#4ade80; font-weight:600; font-size:1.2rem; animation: pulse 1s infinite; font-family:monospace;">Ejecutando Sherlock...</p>
+                <div id="osint-loading" class="hidden" style="position:absolute; inset:0; background:rgba(12,12,12,0.7); display:flex; align-items:center; justify-content:center; z-index:20; pointer-events:none; flex-direction:column; gap:1rem;">
+                  <div class="osint-spinner"></div>
+                  <p id="osint-loading-text" style="color:#4ade80; font-weight:600; font-size:1.1rem; font-family:monospace; animation: pulse 1.5s infinite;">Analizando...</p>
                 </div>
               </div>
 
             </div>
           </div>
         </div>
+
+        <!-- ==================== EVIDENCIAS ==================== -->
+        <div id="view-evidencias" class="view">
+          <div class="view-content" style="max-width:1000px;">
+            <div class="page-header" style="display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <h1>Gestión de Evidencias</h1>
+                <p>Sistema de casos, cadena de custodia y carga de archivos forenses.</p>
+              </div>
+              <button class="btn btn-primary" onclick="openCreateCaseModal()">Nuevo Caso</button>
+            </div>
+
+            <!-- Listado de Casos -->
+            <div class="panel mb-2" id="cases-list-panel">
+              <h2 style="color:var(--accent-bright);font-size:1rem;margin-bottom:1rem;">Casos Activos</h2>
+              <div id="cases-grid" class="dash-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap:1rem;">
+                <!-- Casos se inyectan aqui -->
+              </div>
+            </div>
+
+            <!-- Detalle de Caso (Oculto por defecto) -->
+            <div class="panel" id="case-detail-panel" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); padding-bottom:1rem; margin-bottom:1rem;">
+                <div>
+                  <button class="btn btn-secondary mb-1" onclick="backToCasesList()" style="padding:0.25rem 0.5rem; font-size:0.8rem;">&larr; Volver a Casos</button>
+                  <h2 id="detail-case-name" style="color:var(--accent-bright); margin:0;">Nombre del Caso</h2>
+                  <p id="detail-case-hash" class="text-muted" style="font-family:monospace; font-size:0.8rem;">Hash: ---</p>
+                </div>
+                <button class="btn btn-danger" onclick="deleteCurrentCase()">Eliminar Caso</button>
+              </div>
+
+              <div class="dash-grid" style="grid-template-columns: 1fr 2fr; gap:1.5rem; align-items:start;">
+                <!-- Dropzone de Evidencias -->
+                <div style="border:1px dashed var(--border); border-radius:8px; padding:1.5rem; text-align:center;">
+                  <h3 style="font-size:0.9rem; margin-bottom:1rem; color:var(--text-secondary);">Añadir Evidencia</h3>
+                  
+                  <input type="text" id="ev-uploader-name" class="input-field mb-1" placeholder="Nombre de quien adjunta (Opcional)">
+                  <textarea id="ev-notes" class="input-field mb-1" placeholder="Notas / Descripción" rows="2"></textarea>
+                  
+                  <div class="dropzone-area" onclick="document.getElementById('ev-file-input').click()" style="padding:2rem 1rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;margin-bottom:0.5rem;color:var(--medium);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                    <div class="dropzone-text" style="font-size:0.9rem;">Subir Archivo</div>
+                    <input type="file" id="ev-file-input" style="display:none;" onchange="uploadEvidenceFile(event)">
+                  </div>
+                </div>
+
+                <!-- Lista de Evidencias -->
+                <div>
+                  <h3 style="font-size:0.9rem; margin-bottom:1rem; color:var(--text-secondary);">Cadena de Custodia (Evidencias)</h3>
+                  <div id="evidences-list" style="display:flex; flex-direction:column; gap:0.5rem;">
+                    <!-- Evidencias inyectadas aqui -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================== REPORTES ==================== -->
+        <div id="view-reportes" class="view">
+          <div class="view-content" style="max-width:900px;">
+            <div class="page-header">
+              <div>
+                <h1>Generador de Reportes Forenses</h1>
+                <p>Generación de PDF con metadatos del sistema, firma digital y evidencias.</p>
+              </div>
+            </div>
+
+            <div class="dash-grid" style="grid-template-columns: 2fr 1fr; gap:1.5rem; align-items:start;">
+              <!-- Formulario de Reporte -->
+              <div class="panel">
+                <h2 style="color:var(--accent-bright);font-size:1rem;margin-bottom:1.5rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem;">Datos del Reporte</h2>
+                
+                <div class="grid-2 mb-1">
+                  <div>
+                    <label style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.25rem; display:block;">Oficial / Investigador</label>
+                    <input type="text" id="rep-officer" class="input-field" placeholder="Nombre completo" required>
+                  </div>
+                  <div>
+                    <label style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.25rem; display:block;">Cargo / Rango</label>
+                    <input type="text" id="rep-rank" class="input-field" placeholder="Ej: Analista Forense">
+                  </div>
+                </div>
+
+                <div class="mb-1">
+                  <label style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.25rem; display:block;">Título del Caso / Reporte</label>
+                  <input type="text" id="rep-title" class="input-field" placeholder="Ej: Análisis de Dispositivo Móvil Incautado" required>
+                </div>
+
+                <div class="mb-2">
+                  <label style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.25rem; display:block;">Narración de Hechos / Conclusiones</label>
+                  <textarea id="rep-desc" class="input-field" placeholder="Describa el análisis realizado..." rows="5" required></textarea>
+                </div>
+
+                <div class="mb-2" style="background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:8px; padding:1rem;">
+                  <h3 style="font-size:0.9rem; margin-bottom:1rem; color:var(--text);">Adjuntar Evidencias</h3>
+                  <label style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.25rem; display:block;">Seleccionar Caso</label>
+                  <select id="rep-case-select" class="input-field mb-1" onchange="loadReportEvidences()">
+                    <option value="">-- No incluir evidencias --</option>
+                  </select>
+                  <div id="rep-evidences-container" style="display:none; flex-direction:column; gap:0.5rem; max-height:200px; overflow-y:auto; border:1px solid var(--border); border-radius:4px; padding:0.5rem; background:rgba(0,0,0,0.2);">
+                    <!-- Checkboxes de evidencias se inyectan aqui -->
+                  </div>
+                </div>
+
+                <div>
+                  <h3 style="font-size:0.9rem; margin-bottom:1rem; color:var(--text);">Firma de Responsabilidad</h3>
+                  <div style="display:flex; gap:1rem; margin-bottom:1rem;">
+                    <button class="btn btn-secondary active" id="btn-sig-draw" onclick="setSignatureMode('draw')" style="flex:1;">Dibujar Firma</button>
+                    <button class="btn btn-secondary" id="btn-sig-upload" onclick="setSignatureMode('upload')" style="flex:1;">Subir Imagen</button>
+                  </div>
+                  
+                  <div id="sig-draw-container" style="background:#fff; border-radius:8px; overflow:hidden; border:2px solid var(--border);">
+                    <canvas id="signature-canvas" width="500" height="150" style="width:100%; height:150px; cursor:crosshair; touch-action:none;"></canvas>
+                    <div style="background:#f1f5f9; padding:0.5rem; text-align:right; border-top:1px solid #e2e8f0;">
+                      <button type="button" class="btn btn-secondary" onclick="clearSignature()" style="color:#000; border-color:#cbd5e1;">Limpiar</button>
+                    </div>
+                  </div>
+
+                  <div id="sig-upload-container" style="display:none; text-align:center; border:1px dashed var(--border); padding:2rem; border-radius:8px;">
+                    <input type="file" id="rep-sig-file" accept="image/*" style="display:none;" onchange="handleSignatureUpload(event)">
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('rep-sig-file').click()">Seleccionar Imagen de Firma</button>
+                    <img id="sig-preview" style="display:none; max-height:100px; margin-top:1rem; margin-left:auto; margin-right:auto; filter: invert(1);">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel Lateral: Datos del Sistema y Acciones -->
+              <div>
+                <div class="panel mb-1">
+                  <h2 style="color:var(--text);font-size:1rem;margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.5rem;">Metadatos Automáticos</h2>
+                  <ul style="list-style:none; padding:0; font-size:0.85rem; color:var(--text-secondary); display:flex; flex-direction:column; gap:0.5rem;">
+                    <li><strong>ID Reporte:</strong> <span id="rep-sys-id" class="text-white">---</span></li>
+                    <li><strong>Fecha:</strong> <span id="rep-sys-date" class="text-white">---</span></li>
+                    <li><strong>IP Origen:</strong> <span id="rep-sys-ip" class="text-white">---</span></li>
+                    <li><strong>MAC Address:</strong> <span id="rep-sys-mac" class="text-white">---</span></li>
+                    <li><strong>Plataforma:</strong> <span id="rep-sys-plat" class="text-white">---</span></li>
+                  </ul>
+                </div>
+                
+                <button class="btn btn-primary btn-full btn-lg" onclick="generateReportPDF()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                  Generar y Descargar PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Crear Caso -->
+        <div id="create-case-modal" class="webcam-modal" style="display:none; max-width:400px; max-height:400px; height:auto; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:1000; padding:1.5rem;">
+          <h3 style="color:var(--accent-bright); margin-bottom:1rem;">Crear Nuevo Caso</h3>
+          <input type="text" id="new-case-name" class="input-field mb-1" placeholder="Nombre del Caso" required>
+          <textarea id="new-case-desc" class="input-field mb-1" placeholder="Descripción (Opcional)" rows="3"></textarea>
+          <input type="text" id="new-case-author" class="input-field mb-2" placeholder="Oficial a cargo (Opcional)">
+          <div style="display:flex; gap:1rem; justify-content:flex-end;">
+            <button class="btn btn-secondary" onclick="closeCreateCaseModal()">Cancelar</button>
+            <button class="btn btn-primary" onclick="submitCreateCase()">Crear Caso</button>
+          </div>
+        </div>
+        <div id="modal-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:999; backdrop-filter:blur(3px);" onclick="closeCreateCaseModal()"></div>
 
         <!-- ==================== ABOUT ==================== -->
         <div id="view-about" class="view">
@@ -1008,6 +1240,37 @@
 
   <!-- Scripts -->
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <div id="mobile-download-modal" class="modal-overlay hidden" style="z-index:9999;">
+    <div class="modal-content" style="max-width:500px; text-align:center;">
+      <h2 style="color:var(--accent-bright); margin-bottom:1rem;">Descargar ForenSys Mobile V1</h2>
+      <p class="text-muted" style="margin-bottom:1.5rem;">Instala la aplicación en tu dispositivo móvil para realizar extracciones e identificaciones en campo.</p>
+      
+      <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:1.5rem;">
+        <button class="btn btn-primary btn-lg" onclick="window.open('https://drive.google.com/file/d/1Jw5q73rPm4H69pvxQb2VqPX-kLRdbjgk/view?usp=sharing', '_blank')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;margin-right:8px;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Descargar para Android
+        </button>
+        <button class="btn btn-secondary btn-lg" disabled title="Desactivado temporalmente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;margin-right:8px;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Descargar para iOS (Próximamente)
+        </button>
+      </div>
+
+      <div style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--border);">
+        <p class="text-muted" style="font-size:0.9rem; margin-bottom:1rem;">O escanea este código QR con tu dispositivo:</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://drive.google.com/file/d/1Jw5q73rPm4H69pvxQb2VqPX-kLRdbjgk/view?usp=sharing" alt="QR Code" style="border-radius:8px; border:2px solid var(--accent); padding:0.5rem; background:#fff; max-width:200px;">
+      </div>
+      
+      <div class="modal-actions" style="margin-top:2rem;">
+        <button type="button" class="btn btn-secondary" onclick="closeMobileDownloadModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
 </body>
 </html>

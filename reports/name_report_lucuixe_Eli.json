@@ -1,0 +1,77 @@
+{
+    "suite_module": "ForenSys Name Intelligence",
+    "target_name": "lucuixe Eli",
+    "siri_results": [],
+    "siri_total": 0,
+    "dorks": [
+        {
+            "query": "\"lucuixe Eli\"",
+            "description": "Búsqueda exacta del nombre",
+            "url": "https://www.google.com/search?q=%22lucuixe+Eli%22"
+        },
+        {
+            "query": "\"lucuixe Eli\" site:gov.co",
+            "description": "Portales gubernamentales",
+            "url": "https://www.google.com/search?q=%22lucuixe+Eli%22+site%3Agov.co"
+        },
+        {
+            "query": "\"lucuixe Eli\" filetype:pdf",
+            "description": "Documentos PDF públicos",
+            "url": "https://www.google.com/search?q=%22lucuixe+Eli%22+filetype%3Apdf"
+        },
+        {
+            "query": "\"lucuixe Eli\" filetype:xlsx OR filetype:xls OR filetype:csv",
+            "description": "Hojas de cálculo",
+            "url": "https://www.google.com/search?q=%22lucuixe+Eli%22+filetype%3Axlsx+OR+filetype%3Axls"
+        },
+        {
+            "query": "\"lucuixe Eli\" contrato OR licitación",
+            "description": "Contratación pública",
+            "url": "https://www.google.com/search?q=%22lucuixe+Eli%22+contrato+OR+licitaci%C3%B3n"
+        },
+        {
+            "query": "\"lucuixe Eli\" site:secop.gov.co",
+            "description": "SECOP contratación",
+            "url": "https://www.google.com/search?q=%22lucuixe+Eli%22+site%3Asecop.gov.co"
+        },
+        {
+            "query": "\"lucuixe Eli\" site:datos.gov.co",
+            "description": "Datos abiertos",
+            "url": "https://www.google.com/search?q=%22lucuixe+Eli%22+site%3Adatos.gov.co"
+        }
+    ],
+    "social_links": [
+        {
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/search/people/?q=lucuixe+Eli",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/search/results/people/?keywords=lucuixe+Eli",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "Instagram",
+            "url": "https://www.google.com/search?q=site%3Ainstagram.com+%22lucuixe+Eli%22",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "Twitter/X",
+            "url": "https://x.com/search?q=%22lucuixe+Eli%22&f=user",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.google.com/search?q=site%3Atiktok.com+%22lucuixe+Eli%22",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/results?search_query=%22lucuixe+Eli%22",
+            "icon": "[Social]"
+        }
+    ],
+    "findings": [],
+    "report_file": "reports/name_report_lucuixe_Eli.json"
+}

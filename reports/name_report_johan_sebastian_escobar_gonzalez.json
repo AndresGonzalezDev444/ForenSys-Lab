@@ -1,0 +1,77 @@
+{
+    "suite_module": "ForenSys Name Intelligence",
+    "target_name": "johan sebastian escobar gonzalez",
+    "siri_results": [],
+    "siri_total": 0,
+    "dorks": [
+        {
+            "query": "\"johan sebastian escobar gonzalez\"",
+            "description": "Búsqueda exacta del nombre",
+            "url": "https://www.google.com/search?q=%22johan+sebastian+escobar+gonzalez%22"
+        },
+        {
+            "query": "\"johan sebastian escobar gonzalez\" site:gov.co",
+            "description": "Portales gubernamentales",
+            "url": "https://www.google.com/search?q=%22johan+sebastian+escobar+gonzalez%22+site%3Agov.co"
+        },
+        {
+            "query": "\"johan sebastian escobar gonzalez\" filetype:pdf",
+            "description": "Documentos PDF públicos",
+            "url": "https://www.google.com/search?q=%22johan+sebastian+escobar+gonzalez%22+filetype%3Apdf"
+        },
+        {
+            "query": "\"johan sebastian escobar gonzalez\" filetype:xlsx OR filetype:xls OR filetype:csv",
+            "description": "Hojas de cálculo",
+            "url": "https://www.google.com/search?q=%22johan+sebastian+escobar+gonzalez%22+filetype%3Axlsx+OR+filetype%3Axls"
+        },
+        {
+            "query": "\"johan sebastian escobar gonzalez\" contrato OR licitación",
+            "description": "Contratación pública",
+            "url": "https://www.google.com/search?q=%22johan+sebastian+escobar+gonzalez%22+contrato+OR+licitaci%C3%B3n"
+        },
+        {
+            "query": "\"johan sebastian escobar gonzalez\" site:secop.gov.co",
+            "description": "SECOP contratación",
+            "url": "https://www.google.com/search?q=%22johan+sebastian+escobar+gonzalez%22+site%3Asecop.gov.co"
+        },
+        {
+            "query": "\"johan sebastian escobar gonzalez\" site:datos.gov.co",
+            "description": "Datos abiertos",
+            "url": "https://www.google.com/search?q=%22johan+sebastian+escobar+gonzalez%22+site%3Adatos.gov.co"
+        }
+    ],
+    "social_links": [
+        {
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/search/people/?q=johan+sebastian+escobar+gonzalez",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/search/results/people/?keywords=johan+sebastian+escobar+gonzalez",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "Instagram",
+            "url": "https://www.google.com/search?q=site%3Ainstagram.com+%22johan+sebastian+escobar+gonzalez%22",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "Twitter/X",
+            "url": "https://x.com/search?q=%22johan+sebastian+escobar+gonzalez%22&f=user",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "TikTok",
+            "url": "https://www.google.com/search?q=site%3Atiktok.com+%22johan+sebastian+escobar+gonzalez%22",
+            "icon": "[Social]"
+        },
+        {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/results?search_query=%22johan+sebastian+escobar+gonzalez%22",
+            "icon": "[Social]"
+        }
+    ],
+    "findings": [],
+    "report_file": "reports/name_report_johan_sebastian_escobar_gonzalez.json"
+}

@@ -1,0 +1,101 @@
+{
+    "suite_module": "ForenSys CC Intelligence",
+    "target_cedula": "1112390362",
+    "siri_results": [],
+    "siri_total": 0,
+    "portals": [
+        {
+            "name": "Procuraduría General",
+            "description": "Antecedentes disciplinarios",
+            "url": "https://www.procuraduria.gov.co/Pages/certificado-antecedentes.aspx",
+            "icon": "[Portal]"
+        },
+        {
+            "name": "Policía Nacional",
+            "description": "Antecedentes judiciales",
+            "url": "https://antecedentes.policia.gov.co:7005/WebJudicial/",
+            "icon": "[Portal]"
+        },
+        {
+            "name": "Contraloría General",
+            "description": "Antecedentes fiscales",
+            "url": "https://www.contraloria.gov.co/resultados/proceso-auditor/certificados-de-antecedentes",
+            "icon": "[Portal]"
+        },
+        {
+            "name": "Rama Judicial",
+            "description": "Consulta de procesos",
+            "url": "https://consultaprocesos.ramajudicial.gov.co/",
+            "icon": "[Portal]"
+        },
+        {
+            "name": "ADRES",
+            "description": "Afiliación en salud",
+            "url": "https://www.adres.gov.co/consulte-su-eps",
+            "icon": "[Portal]"
+        },
+        {
+            "name": "SIMIT",
+            "description": "Comparendos de tránsito",
+            "url": "https://www.fcm.org.co/simit/#/home-702",
+            "icon": "[Portal]"
+        },
+        {
+            "name": "RUES",
+            "description": "Registro empresarial",
+            "url": "https://www.rues.org.co/",
+            "icon": "[Portal]"
+        },
+        {
+            "name": "SISBEN",
+            "description": "Consulta de puntaje",
+            "url": "https://www.sisben.gov.co/Paginas/consulta-tu-grupo.aspx",
+            "icon": "[Portal]"
+        },
+        {
+            "name": "Libreta Militar",
+            "description": "Situación militar",
+            "url": "https://www.libretamilitar.mil.co/",
+            "icon": "[Portal]"
+        }
+    ],
+    "dorks": [
+        {
+            "query": "\"1112390362\"",
+            "description": "Búsqueda exacta de cédula",
+            "url": "https://www.google.com/search?q=%221112390362%22"
+        },
+        {
+            "query": "\"1112390362\" filetype:pdf",
+            "description": "Documentos PDF públicos",
+            "url": "https://www.google.com/search?q=%221112390362%22+filetype%3Apdf"
+        },
+        {
+            "query": "\"1112390362\" filetype:xlsx OR filetype:xls OR filetype:csv",
+            "description": "Hojas de cálculo públicas",
+            "url": "https://www.google.com/search?q=%221112390362%22+filetype%3Axlsx+OR+filetype%3Axls+OR+filetype%3Acsv"
+        },
+        {
+            "query": "\"1112390362\" site:gov.co",
+            "description": "Portales gubernamentales",
+            "url": "https://www.google.com/search?q=%221112390362%22+site%3Agov.co"
+        },
+        {
+            "query": "\"1112390362\" site:datos.gov.co",
+            "description": "Datos abiertos Colombia",
+            "url": "https://www.google.com/search?q=%221112390362%22+site%3Adatos.gov.co"
+        },
+        {
+            "query": "\"1112390362\" contrato OR licitación OR adjudicación",
+            "description": "Contratación pública",
+            "url": "https://www.google.com/search?q=%221112390362%22+contrato+OR+licitaci%C3%B3n+OR+adjudicaci%C3%B3n"
+        },
+        {
+            "query": "\"1112390362\" site:secop.gov.co OR site:colombiacompra.gov.co",
+            "description": "SECOP - Contratación estatal",
+            "url": "https://www.google.com/search?q=%221112390362%22+site%3Asecop.gov.co+OR+site%3Acolombiacompra.gov.co"
+        }
+    ],
+    "findings": [],
+    "report_file": "reports/cedula_report_1112390362.json"
+}

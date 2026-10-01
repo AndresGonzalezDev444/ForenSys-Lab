@@ -1,0 +1,134 @@
+{
+    "suite_module": "ForenSys Phone Intelligence",
+    "target_phone": "+57317416411",
+    "phone_info": {
+        "number_e164": "+57317416411",
+        "number_international": "+57 317416411",
+        "number_national": "317416411",
+        "valid": false,
+        "possible": false,
+        "country_code": 57,
+        "national_number": "317416411",
+        "country": "Desconocido",
+        "carrier": "Desconocido",
+        "timezone": [
+            "Etc/Unknown"
+        ],
+        "line_type": "Desconocido",
+        "dorks": [
+            {
+                "query": "WhatsApp API",
+                "description": "Verificar WhatsApp",
+                "url": "https://wa.me/57317416411"
+            },
+            {
+                "query": "Truecaller",
+                "description": "Buscar en Truecaller",
+                "url": "https://www.truecaller.com/search/co/317416411"
+            },
+            {
+                "query": "Sync.me",
+                "description": "Buscar en Sync.me",
+                "url": "https://sync.me/search/?number=+57317416411"
+            },
+            {
+                "query": "Google Maps",
+                "description": "Ubicación Regional",
+                "url": "https://www.google.com/maps/search/Desconocido"
+            },
+            {
+                "query": "\"+57317416411\"",
+                "description": "Búsqueda exacta formato E.164",
+                "url": "https://www.google.com/search?q=%22+57317416411%22"
+            },
+            {
+                "query": "\"317416411\"",
+                "description": "Búsqueda formato nacional",
+                "url": "https://www.google.com/search?q=%22317416411%22"
+            },
+            {
+                "query": "\"317416411\"",
+                "description": "Búsqueda por dígitos",
+                "url": "https://www.google.com/search?q=%22317416411%22"
+            },
+            {
+                "query": "site:facebook.com \"317416411\"",
+                "description": "Facebook",
+                "url": "https://www.google.com/search?q=site%3Afacebook.com+%22317416411%22"
+            },
+            {
+                "query": "site:instagram.com \"317416411\"",
+                "description": "Instagram",
+                "url": "https://www.google.com/search?q=site%3Ainstagram.com+%22317416411%22"
+            },
+            {
+                "query": "site:linkedin.com \"317416411\"",
+                "description": "LinkedIn",
+                "url": "https://www.google.com/search?q=site%3Alinkedin.com+%22317416411%22"
+            },
+            {
+                "query": "site:twitter.com OR site:x.com \"317416411\"",
+                "description": "Twitter/X",
+                "url": "https://www.google.com/search?q=site%3Atwitter.com+OR+site%3Ax.com+%22317416411%22"
+            }
+        ]
+    },
+    "dorks": [
+        {
+            "query": "WhatsApp API",
+            "description": "Verificar WhatsApp",
+            "url": "https://wa.me/57317416411"
+        },
+        {
+            "query": "Truecaller",
+            "description": "Buscar en Truecaller",
+            "url": "https://www.truecaller.com/search/co/317416411"
+        },
+        {
+            "query": "Sync.me",
+            "description": "Buscar en Sync.me",
+            "url": "https://sync.me/search/?number=+57317416411"
+        },
+        {
+            "query": "Google Maps",
+            "description": "Ubicación Regional",
+            "url": "https://www.google.com/maps/search/Desconocido"
+        },
+        {
+            "query": "\"+57317416411\"",
+            "description": "Búsqueda exacta formato E.164",
+            "url": "https://www.google.com/search?q=%22+57317416411%22"
+        },
+        {
+            "query": "\"317416411\"",
+            "description": "Búsqueda formato nacional",
+            "url": "https://www.google.com/search?q=%22317416411%22"
+        },
+        {
+            "query": "\"317416411\"",
+            "description": "Búsqueda por dígitos",
+            "url": "https://www.google.com/search?q=%22317416411%22"
+        },
+        {
+            "query": "site:facebook.com \"317416411\"",
+            "description": "Facebook",
+            "url": "https://www.google.com/search?q=site%3Afacebook.com+%22317416411%22"
+        },
+        {
+            "query": "site:instagram.com \"317416411\"",
+            "description": "Instagram",
+            "url": "https://www.google.com/search?q=site%3Ainstagram.com+%22317416411%22"
+        },
+        {
+            "query": "site:linkedin.com \"317416411\"",
+            "description": "LinkedIn",
+            "url": "https://www.google.com/search?q=site%3Alinkedin.com+%22317416411%22"
+        },
+        {
+            "query": "site:twitter.com OR site:x.com \"317416411\"",
+            "description": "Twitter/X",
+            "url": "https://www.google.com/search?q=site%3Atwitter.com+OR+site%3Ax.com+%22317416411%22"
+        }
+    ],
+    "report_file": "reports/phone_report_plus_57317416411.json"
+}

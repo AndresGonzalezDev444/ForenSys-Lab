@@ -1,0 +1,22 @@
+{
+    "suite_module": "ForenSys OSINT & NetTracker",
+    "target_username": "andresgonzalez444",
+    "total_found": 3,
+    "findings": [
+        {
+            "platform": "TikTok",
+            "url": "https://www.tiktok.com/@andresgonzalez444",
+            "status": "Found"
+        },
+        {
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/@andresgonzalez444",
+            "status": "Found"
+        },
+        {
+            "platform": "BabyRu",
+            "url": "https://www.baby.ru/u/andresgonzalez444",
+            "status": "Found"
+        }
+    ]
+}

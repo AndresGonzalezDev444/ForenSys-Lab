@@ -1,0 +1,134 @@
+{
+    "suite_module": "ForenSys Phone Intelligence",
+    "target_phone": "3137321711",
+    "phone_info": {
+        "number_e164": "+573137321711",
+        "number_international": "+57 313 7321711",
+        "number_national": "313 7321711",
+        "valid": true,
+        "possible": true,
+        "country_code": 57,
+        "national_number": "3137321711",
+        "country": "Colombia",
+        "carrier": "Claro",
+        "timezone": [
+            "America/Bogota"
+        ],
+        "line_type": "Móvil",
+        "dorks": [
+            {
+                "query": "WhatsApp API",
+                "description": "Verificar WhatsApp",
+                "url": "https://wa.me/573137321711"
+            },
+            {
+                "query": "Truecaller",
+                "description": "Buscar en Truecaller",
+                "url": "https://www.truecaller.com/search/co/3137321711"
+            },
+            {
+                "query": "Sync.me",
+                "description": "Buscar en Sync.me",
+                "url": "https://sync.me/search/?number=+573137321711"
+            },
+            {
+                "query": "Google Maps",
+                "description": "Ubicación Regional",
+                "url": "https://www.google.com/maps/search/Colombia"
+            },
+            {
+                "query": "\"+573137321711\"",
+                "description": "Búsqueda exacta formato E.164",
+                "url": "https://www.google.com/search?q=%22+573137321711%22"
+            },
+            {
+                "query": "\"313 7321711\"",
+                "description": "Búsqueda formato nacional",
+                "url": "https://www.google.com/search?q=%22313+7321711%22"
+            },
+            {
+                "query": "\"3137321711\"",
+                "description": "Búsqueda por dígitos",
+                "url": "https://www.google.com/search?q=%223137321711%22"
+            },
+            {
+                "query": "site:facebook.com \"3137321711\"",
+                "description": "Facebook",
+                "url": "https://www.google.com/search?q=site%3Afacebook.com+%223137321711%22"
+            },
+            {
+                "query": "site:instagram.com \"3137321711\"",
+                "description": "Instagram",
+                "url": "https://www.google.com/search?q=site%3Ainstagram.com+%223137321711%22"
+            },
+            {
+                "query": "site:linkedin.com \"3137321711\"",
+                "description": "LinkedIn",
+                "url": "https://www.google.com/search?q=site%3Alinkedin.com+%223137321711%22"
+            },
+            {
+                "query": "site:twitter.com OR site:x.com \"3137321711\"",
+                "description": "Twitter/X",
+                "url": "https://www.google.com/search?q=site%3Atwitter.com+OR+site%3Ax.com+%223137321711%22"
+            }
+        ]
+    },
+    "dorks": [
+        {
+            "query": "WhatsApp API",
+            "description": "Verificar WhatsApp",
+            "url": "https://wa.me/573137321711"
+        },
+        {
+            "query": "Truecaller",
+            "description": "Buscar en Truecaller",
+            "url": "https://www.truecaller.com/search/co/3137321711"
+        },
+        {
+            "query": "Sync.me",
+            "description": "Buscar en Sync.me",
+            "url": "https://sync.me/search/?number=+573137321711"
+        },
+        {
+            "query": "Google Maps",
+            "description": "Ubicación Regional",
+            "url": "https://www.google.com/maps/search/Colombia"
+        },
+        {
+            "query": "\"+573137321711\"",
+            "description": "Búsqueda exacta formato E.164",
+            "url": "https://www.google.com/search?q=%22+573137321711%22"
+        },
+        {
+            "query": "\"313 7321711\"",
+            "description": "Búsqueda formato nacional",
+            "url": "https://www.google.com/search?q=%22313+7321711%22"
+        },
+        {
+            "query": "\"3137321711\"",
+            "description": "Búsqueda por dígitos",
+            "url": "https://www.google.com/search?q=%223137321711%22"
+        },
+        {
+            "query": "site:facebook.com \"3137321711\"",
+            "description": "Facebook",
+            "url": "https://www.google.com/search?q=site%3Afacebook.com+%223137321711%22"
+        },
+        {
+            "query": "site:instagram.com \"3137321711\"",
+            "description": "Instagram",
+            "url": "https://www.google.com/search?q=site%3Ainstagram.com+%223137321711%22"
+        },
+        {
+            "query": "site:linkedin.com \"3137321711\"",
+            "description": "LinkedIn",
+            "url": "https://www.google.com/search?q=site%3Alinkedin.com+%223137321711%22"
+        },
+        {
+            "query": "site:twitter.com OR site:x.com \"3137321711\"",
+            "description": "Twitter/X",
+            "url": "https://www.google.com/search?q=site%3Atwitter.com+OR+site%3Ax.com+%223137321711%22"
+        }
+    ],
+    "report_file": "reports/phone_report_3137321711.json"
+}
